@@ -1,8 +1,13 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+
+from django.views.generic import CreateView
+from django.contrib.auth import login, logout
+from django.urls import reverse_lazy
+
+from . import forms
 
 
 
 # Create your views here.
-class SignupView(TemplateView):
+class SignUpView(CreateView):
+    form_class = forms.UserCreateForm
     template_name = 'signup.html'
