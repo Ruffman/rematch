@@ -7,3 +7,6 @@ class TestPage(TemplateView):
 
 class BasePage(TemplateView):
     template_name = 'base.html'
+
+class LandingPage(TemplateView):
+    template_name = 'landing.html'
