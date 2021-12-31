@@ -7,7 +7,7 @@ User = get_user_model()
 
 # Create your models here.
 class Offer(models.Model):
-    owner_id = models.ForeignKey(User, related_name='offer', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, related_name='offer', on_delete=models.CASCADE)
 
 class Request(models.Model):
-    owner_id = models.ForeignKey(User, related_name='request', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, related_name='request', on_delete=models.CASCADE)
