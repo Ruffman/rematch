@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <form class="form" method="post">
+
+    {% bootstrap_button 'Insert' button_type='submit' %}
+  </form>
+{% endblock %}
