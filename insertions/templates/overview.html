@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1>Overview for Insertions</h1>
+  <div class="container">
+    <h2>Here a list of offers should be displayed</h2>
+    <ul>
+      <li>first offer</li>
+      <li>second offer</li>
+    </ul>
+
+    {% bootstrap_button content='New Offer' button_type='link' href='insertions:insert' %}
+  </div>
+
+  <div class="container">
+    <h2>Here a list of requests should be displayed</h2>
+    <ul>
+      <li>first request</li>
+      <li>second request</li>
+    </ul>
+
+    {% bootstrap_button content='New Request' button_type='link' href='#' %}
+  </div>
+
+{% endblock %}
