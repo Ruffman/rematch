@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--58hxt01r#62q($uu$wc1ko$-tz#x*9)h67diau&vwr(#9dt!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tcpruffman.pythonanywhere.com', 'localhost']
 
 
 # Application definition
@@ -92,6 +92,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'tcpruffman$rematch',
+#         'USER': 'tcpruffman',
+#         'PASSWORD': 'qaywsxedc',
+#         'HOST': 'tcpruffman.mysql.pythonanywhere-services.com',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
