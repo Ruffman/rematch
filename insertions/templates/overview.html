@@ -10,7 +10,7 @@
       <li>second offer</li>
     </ul>
 
-    {% bootstrap_button content='New Offer' button_type='link' href='insertions:insert' %}
+    <a class="btn btn-primary" href="{% url 'insertions:insert' %}" role="button">New Offer</a>
   </div>
 
   <div class="container">
@@ -20,7 +20,7 @@
       <li>second request</li>
     </ul>
 
-    {% bootstrap_button content='New Request' button_type='link' href='#' %}
+    <a class="btn btn-primary" href="{% url 'insertions:insert' %}" role="button">New Request</a>
   </div>
 
 {% endblock %}
