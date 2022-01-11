@@ -9,7 +9,6 @@
   <h1>Insertions test</h1>
   <form class="form" method="post">
     {% csrf_token %}
-    {% bootstrap_form form %}
     {% bootstrap_button content='Insert' button_type='submit' %}
   </form>
 {% endblock %}
