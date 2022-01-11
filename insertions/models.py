@@ -18,17 +18,21 @@ class Object_Type(models.Model):
         return self.type_name
 
 
-
 class Object(models.Model):
-    object_type = models.ForeignKey(Object_Type, verbose_name='object type', on_delete=models.PROTECT) # TODO: do i need this here as well to reference the right object table?
-    created_at = models.DateTimeField(timezone.now())
+    object_type = models.OneToOneField(Object_Type, verbose_name='object type', on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
     zip_code = models.IntegerField()
-    street_name = models.CharField(max_length=150)
+    city_name = models.CharField(max_length=255)
+    street_name = models.CharField(max_length=255)
     street_number = models.IntegerField()
     living_area = models.IntegerField()
     monthly_rent_price = models.DecimalField(decimal_places=2, max_digits=9)
-    buy_price = models.DecimalField(decimal_places=2, max_digits=9)
+    buy_price = models.DecimalField(decimal_places=2, max_digits=17)
 
+    def __str__(self):
+        return self.object_type + ' ' + self.created_at
 
 # class Property(Object):
 #
@@ -44,8 +48,8 @@ class Object(models.Model):
 
 
 class Offer(models.Model):
-    user = models.ForeignKey(User, verbose_name='offer', on_delete=models.CASCADE)
-    object = models.ForeignKey(Object, verbose_name='object id', on_delete=models.CASCADE) # # TODO: model so that object can be any child model inheriting from object
+    user = models.OneToOneField(User, verbose_name='offer', on_delete=models.CASCADE)
+    object = models.OneToOneField(Object, verbose_name='object', on_delete=models.CASCADE) # # TODO: model so that object can be any child model inheriting from object
 
     def __str__(self):
         return self.user.username
@@ -56,8 +60,11 @@ class Offer(models.Model):
 
 
 class Request(models.Model):
-    user = models.ForeignKey(User, verbose_name='request', on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, verbose_name='request', on_delete=models.CASCADE)
+    object = models.OneToOneField(Object, verbose_name='object', on_delete=models.CASCADE) # # TODO: model so that object can be any child model inheriting from object
 
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        unique_together = ['user', 'object']
