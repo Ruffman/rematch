@@ -34,6 +34,10 @@ class Object(models.Model):
     def __str__(self):
         return self.object_type + ' ' + self.created_at
 
+    def save(self, *args, **kwargs):
+        super().save(args, **kwargs)
+
+
 # class Property(Object):
 #
 #
