@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'rematch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rematchdb',
+        'NAME': 'redb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',

@@ -19,7 +19,7 @@ class Object_Type(models.Model):
 
 
 class Object(models.Model):
-    object_type = models.OneToOneField(Object_Type, verbose_name='object type', on_delete=models.PROTECT)
+    object_type = models.ForeignKey(Object_Type, verbose_name='object type', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
