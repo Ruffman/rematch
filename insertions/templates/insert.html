@@ -7,7 +7,7 @@
 
 {% block content %}
   <h1>Insertions test</h1>
-  <form method="POST" action="{% url 'insertions:overview' %}" id="insertForm">
+  <form method="POST" id="insertForm">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button content='Insert' button_type='submit' %}

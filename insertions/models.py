@@ -31,6 +31,9 @@ class Object(models.Model):
     monthly_rent_price = models.DecimalField(decimal_places=2, max_digits=9)
     buy_price = models.DecimalField(decimal_places=2, max_digits=17)
 
+    # Meta:
+    #     abstract = True
+
     def __str__(self):
         return self.object_type + ' ' + self.created_at
 
@@ -57,6 +60,9 @@ class Offer(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        super().save(args, **kwargs)
 
     class Meta:
         unique_together = ['user', 'object']
