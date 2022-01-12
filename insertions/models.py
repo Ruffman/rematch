@@ -35,7 +35,8 @@ class Object(models.Model):
     #     abstract = True
 
     def __str__(self):
-        return self.object_type + ' ' + self.created_at
+        return (str(self.object_type) + '::' + str(self.zip_code) + '::' + self.city_name + '::'
+                + self.street_name + '::' + str(self.street_number))
 
     def save(self, *args, **kwargs):
         super().save(args, **kwargs)
