@@ -23,5 +23,12 @@ class NewOfferView(InsertView):
     success_url = reverse_lazy('insertions:overview')
 
 
-class OverviewView(TemplateView):
+class OverviewView(LoginRequiredMixin, generic.ListView):
+    model = Object
     template_name = 'overview.html'
+
+    # def get_queryset(self):
+    #     return Object.objects.all() # TODO: filter by current user_id
+    #
+    # def get_context_data(self, **kwargs):
+    #     return super().get_context_data(**kwargs)
