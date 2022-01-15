@@ -43,7 +43,7 @@
         <ul>
           <div class="active-tab"></div>
           <li class="tooltip-element" data-tooltip="0">
-            <a href="{% url 'insertions:overview' %}" class="active" data-active="0">
+            <a href="{% url 'insertions:ins_overview' %}" class="active" data-active="0">
               <div class="icon">
                 <i class='bx bx-tachometer'></i>
                 <i class='bx bxs-tachometer'></i>
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="tooltip-element" data-tooltip="3">
-            <a href="#" data-active="3">
+            <a href="{% url 'conversations:con_overview' %}" data-active="3">
               <div class="icon">
                 <i class='bx bx-bar-chart-square'></i>
                 <i class='bx bxs-bar-chart-square'></i>
@@ -148,7 +148,10 @@
     </nav>
 
     <main>
+<<<<<<< HEAD
 
+=======
+>>>>>>> conversation
       <div class="container">
        {% block content %}
        <h2>How do you doooo, fellow kid?</h2>
