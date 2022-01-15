@@ -23,6 +23,8 @@ class Object(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
+    title = models.CharField(max_length=127)
+    short_description = models.CharField(max_length=255)
     zip_code = models.IntegerField()
     city_name = models.CharField(max_length=255)
     street_name = models.CharField(max_length=255)
