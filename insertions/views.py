@@ -27,7 +27,7 @@ class NewOfferView(LoginRequiredMixin, generic.edit.CreateView):
     fields = ('object_type', 'zip_code', 'city_name', 'street_name', 'street_number', 'living_area',
               'monthly_rent_price', 'buy_price')
     model = Offer
-    success_url = reverse_lazy('insertions:overview')
+    success_url = reverse_lazy('insertions:ins_overview')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -41,7 +41,7 @@ class NewRequestView(LoginRequiredMixin, generic.edit.CreateView):
     fields = ('object_type', 'zip_code', 'city_name', 'street_name', 'street_number', 'living_area',
               'monthly_rent_price', 'buy_price')
     model = Request
-    success_url = reverse_lazy('insertions:overview')
+    success_url = reverse_lazy('insertions:ins_overview')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -50,8 +50,8 @@ class NewRequestView(LoginRequiredMixin, generic.edit.CreateView):
 
 
 
-class OverviewView(LoginRequiredMixin, generic.ListView):
-    template_name = 'overview.html'
+class InsertionOverView(LoginRequiredMixin, generic.ListView):
+    template_name = 'insertion_overview.html'
 
     def get_queryset(self):
         offer_queryset = Offer.objects.all()
