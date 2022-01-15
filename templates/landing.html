@@ -4,5 +4,8 @@
 {% block content %}
   <div class="container">
     <h1>Landing</h1>
+
+    <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Sign Up</a>
+    <a class="btn btn-primary" href="{% url 'accounts:login' %}" role="button">Log In</a>
   </div>
 {% endblock %}
