@@ -2,18 +2,19 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+  <!-- OFFER LIST -->
   <div class="container">
     <!-- Header -->
     <h1>My Offers</h1>
     <!-- End Header -->
 
-    {% if object.objects.all == 0 %}
-    <h2>No objects in database yet!</h2>
+    {% if offer_list.count == 0 %}
+    <h2>You have no active offers!</h2>
 
     {% else %}
     <div class="container">
       <div class="row row-cols-1 row-cols-lg-3 row-cols-lg-4 g-4">
-        {% for object in object_list %}
+        {% for offer in offer_list %}
         <div class="col">
           <div class="card" style="width: 18rem">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -23,7 +24,7 @@
             </svg>
             <div class="card-body">
               <h5 class="card-title">Sample Title</h5>
-              <p class="card-text">{{ object.object_type }}</p>
+              <p class="card-text">{{ offer.object_type }}</p>
               <a href="#" class="btn btn-primary stretched-link">View matches</a> <!-- TODO href to matches for object  url 'object.id:conversations:overview'-->
             </div>
           </div>
