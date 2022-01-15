@@ -57,9 +57,8 @@ class Object(models.Model):
 #     num_other_tennants = models.IntegerField()
 
 
-class Offer(models.Model):
-    user = models.OneToOneField(User, verbose_name='offer', on_delete=models.CASCADE)
-    object = models.OneToOneField(Object, verbose_name='object', on_delete=models.CASCADE) # # TODO: model so that object can be any child model inheriting from object
+class Offer(Object):
+    user = models.ForeignKey(User, verbose_name='offer', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
@@ -67,17 +66,17 @@ class Offer(models.Model):
     def save(self, *args, **kwargs):
         super().save(args, **kwargs)
 
-    class Meta:
-        unique_together = ['user', 'object']
+    #class Meta:
+    #    unique_together = ['user', 'object']
 
 
 
-class Request(models.Model):
-    user = models.OneToOneField(User, verbose_name='request', on_delete=models.CASCADE)
-    object = models.OneToOneField(Object, verbose_name='object', on_delete=models.CASCADE) # # TODO: model so that object can be any child model inheriting from object
+class Request(Object):
+    user = models.ForeignKey(User, verbose_name='request', on_delete=models.CASCADE)
+    offer_matches = models.ManyToManyField(Offer)
 
     def __str__(self):
         return self.user.username
 
-    class Meta:
-        unique_together = ['user', 'object']
+    #class Meta:
+    #    unique_together = ['user', 'object']
