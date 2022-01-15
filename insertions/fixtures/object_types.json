@@ -1,0 +1,30 @@
+[
+  {
+    "model": "insertions.object_type",
+    "pk": 1,
+    "fields": {
+      "type_name": "Room"
+    }
+  },
+  {
+    "model": "insertions.object_type",
+    "pk": 2,
+    "fields": {
+      "type_name": "Apartment"
+    }
+  },
+  {
+    "model": "insertions.object_type",
+    "pk": 3,
+    "fields": {
+      "type_name": "House"
+    }
+  },
+  {
+    "model": "insertions.object_type",
+    "pk": 4,
+    "fields": {
+      "type_name": "Property"
+    }
+  }
+]
