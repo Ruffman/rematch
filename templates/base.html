@@ -43,7 +43,7 @@
         <ul>
           <div class="active-tab"></div>
           <li class="tooltip-element" data-tooltip="0">
-            <a href="{% url 'insertions:overview' %}" class="active" data-active="0">
+            <a href="{% url 'insertions:ins_overview' %}" class="active" data-active="0">
               <div class="icon">
                 <i class='bx bx-tachometer'></i>
                 <i class='bx bxs-tachometer'></i>
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="tooltip-element" data-tooltip="3">
-            <a href="#" data-active="3">
+            <a href="{% url 'conversations:con_overview' %}" data-active="3">
               <div class="icon">
                 <i class='bx bx-bar-chart-square'></i>
                 <i class='bx bxs-bar-chart-square'></i>
@@ -148,71 +148,6 @@
     </nav>
 
     <main>
-
-      <!-- <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-          <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-          <span class="fs-5 fw-semibold">Collapsible</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              My Offers
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{% url 'insertions:overview' %}" class="link-dark rounded">Overview</a></li>
-                <li><a href="#" class="link-dark rounded">New Offer</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-              My Requests
-            </button>
-            <div class="collapse" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{% url 'insertions:overview' %}" class="link-dark rounded">Overview</a></li>
-                <li><a href="#" class="link-dark rounded">New Request</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-              Help
-            </button>
-            <div class="collapse" id="orders-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">New</a></li>
-                <li><a href="#" class="link-dark rounded">Processed</a></li>
-                <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                <li><a href="#" class="link-dark rounded">Returned</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="border-top my-3"></li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
-              Account
-            </button>
-            <div class="collapse show" id="account-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                {% if user.is_authenticated %}
-                  <li><a href="{% url 'accounts:profile' %}" class="link-dark rounded">Profile</a></li>
-                  <li><a href="#" class="link-dark rounded">Settings</a></li>
-                  <li><a href="{% url 'accounts:logout' %}" class="link-dark rounded">Log out</a></li>
-                {% else %}
-                  <li><a href="{% url 'accounts:signup' %}" class="link-dark rounded">Sign up</a></li>
-                  <li><a href="#" class="link-dark rounded">Settings</a></li>
-                  <li><a href="{% url 'accounts:login' %}" class="link-dark rounded">Log in</a></li>
-                {% endif %}
-
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div> -->
-
       <div class="container">
        {% block content %}
        <h2>How do you doooo, fellow kid?</h2>
