@@ -33,8 +33,8 @@ class Object(models.Model):
     monthly_rent_price = models.DecimalField(decimal_places=2, max_digits=9)
     buy_price = models.DecimalField(decimal_places=2, max_digits=17)
 
-    # Meta:
-    #     abstract = True
+    class Meta:
+        abstract = True
 
     def __str__(self):
         return (str(self.object_type) + '::' + str(self.zip_code) + '::' + self.city_name + '::'
