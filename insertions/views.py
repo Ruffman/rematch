@@ -19,6 +19,14 @@ class InsertView(LoginRequiredMixin, generic.edit.CreateView):
     # def post(self, request, *args, **kwargs):
     #     super().post(request, *args, **kwargs)
 
+# displays a detail view of an insertion(offer or request) with a list of possible matches,
+# a list of sent sent_likes and a list of received likes
+class InsertionDetailView(LoginRequiredMixin, generic.ListView):
+    template_name = 'insertion_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
 class NewOfferView(InsertView):
     success_url = reverse_lazy('insertions:overview')
 
