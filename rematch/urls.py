@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.LandingPage.as_view(), name='landing'),
     path('accounts/', include('accounts.urls')),
     path('insertions/', include('insertions.urls')),
+    path('conversations/', include('conversations.urls')),
 ]
