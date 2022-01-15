@@ -23,4 +23,5 @@ urlpatterns = [
     path('test/', views.TestPage.as_view(), name='test'),
     path('', views.LandingPage.as_view(), name='landing'),
     path('accounts/', include('accounts.urls')),
+    path('insertions/', include('insertions.urls')),
 ]
