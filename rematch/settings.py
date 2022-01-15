@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'rematch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rematchdb',
+        'NAME': 'redb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
@@ -149,5 +149,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'test'
-LOGOUT_REDIRECT_URL = 'test'
+LOGIN_REDIRECT_URL = 'accounts:profile'
+LOGOUT_REDIRECT_URL = 'landing'

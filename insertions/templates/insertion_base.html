@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="insertions-page">
+  <div class="container">
+    {% block insertion_information %}{% endblock %}
+    {% block recommended_matches %}{% endblock %}
+    {% block sent_likes %}{% endblock %}
+    {% block received_likes %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
