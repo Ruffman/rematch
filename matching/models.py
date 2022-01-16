@@ -2,7 +2,7 @@ from django.db import models
 
 
 
-from insertions import Offer, Request
+from insertions.models import Offer, Request
 
 # Create your models here.
 class Match(models.Model):
@@ -24,7 +24,7 @@ class OfferReceivedLikes(models.Model):
 
 
 class RequestSentLikes(models.Model):
-request = models.ForeignKey(Request, on_delete=models.CASCADE)
+    request = models.ForeignKey(Request, on_delete=models.CASCADE)
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
 
 
