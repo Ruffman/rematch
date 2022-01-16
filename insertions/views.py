@@ -5,6 +5,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import Http404
 
 from insertions.models import Object, Offer, Request
 
@@ -20,6 +21,23 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        if self.kwargs['type'] == 'offer':
+            context['object'] = Offer.objects.get(id=self.kwargs['id'])
+        elif self.kwargs['type'] == 'request':
+            context['object'] = Request.objects.get(id=self.kwargs['id'])
+
+        return context
+
+    def get_queryset(self, **kwargs):
+
+        if self.kwargs['type'] == 'offer':
+            queryset = Offer.objects.get(id=self.kwargs['id'])
+        elif self.kwargs['type'] == 'request':
+            queryset = Request.objects.get(id=self.kwargs['id'])
+        else:
+            raise Http404
+
+        return queryset
 
 
 class NewOfferView(LoginRequiredMixin, generic.edit.CreateView):

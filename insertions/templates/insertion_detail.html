@@ -1,9 +1,9 @@
-{% extends "insertions/insertion_base.html" %}
+{% extends "insertion_base.html" %}
 
 {% block content %}
-<h1>Insertion Detail for {{ insterion.id }}</h1>
+<h1>Insertion Detail for id: {{ object.id }} type: {{ object.object_type }}</h1>
   {% block insertion_information %}
-    {% include "insertions/_insertion.html" %}
+    {% include "_insertion.html" %}
   {% endblock %}
   {% block recommended_matches %}
 
