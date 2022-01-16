@@ -73,7 +73,6 @@ class Offer(Object):
 
 class Request(Object):
     user = models.ForeignKey(User, verbose_name='request', on_delete=models.CASCADE)
-    offer_matches = models.ManyToManyField(Offer)
 
     def __str__(self):
         return self.user.username
