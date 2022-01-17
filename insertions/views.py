@@ -78,13 +78,16 @@ class InsertionOverView(LoginRequiredMixin, generic.ListView):
     template_name = 'insertion_overview.html'
 
     def get_queryset(self):
-        offer_queryset = Offer.objects.all()
-        request_queryset = Request.objects.all()
-        queryset = chain(offer_queryset, request_queryset)
-        return queryset
+        try:
+            self.offer_queryset = Offer.objects.all()
+            self.request_queryset = Request.objects.all()
+        except:
+            raise Http404
+        else:
+            return chain(self.offer_queryset, self.request_queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['offer_list'] = Offer.objects.all()
-        context['request_list'] = Request.objects.all()
+        context['offer_list'] = self.offer_queryset
+        context['request_list'] = self.request_queryset
         return context
