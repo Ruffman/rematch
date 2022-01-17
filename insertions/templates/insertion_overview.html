@@ -59,7 +59,7 @@
             <div class="card-body">
               <h5 class="card-title">Sample Title</h5>
               <p class="card-text">{{ request.object_type }}</p>
-              <a href="{% url 'insertions:detail' id=request.id type='re' %}" class="btn btn-primary stretched-link">View matches</a> <!-- TODO href to matches for object  url 'object.id:conversations:overview'-->
+              <a href="{% url 'insertions:detail' id=request.id type='request' %}" class="btn btn-primary stretched-link">View matches</a> <!-- TODO href to matches for object  url 'object.id:conversations:overview'-->
             </div>
           </div>
         </div>
