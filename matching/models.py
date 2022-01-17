@@ -5,30 +5,27 @@ from django.db import models
 from insertions.models import Offer, Request
 
 # Create your models here.
-class Match(models.Model):
+# table for the matches we recommend User
+class ProposedMatch(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
 
 
-
-class OfferSentLikes(models.Model):
+# table for storing matches where both user liked the other party
+class TrueMatch(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
 
 
-
-class OfferReceivedLikes(models.Model):
+# sent and received likes based on an offer object
+class OfferLike(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    sent_like_to_request = models.ForeignKey(Request, on_delete=models.CASCADE)
+    received_like_from_request = models.ForeignKey(Request, on_delete=models.CASCADE)
+
+
+# sent and received likes based on a request object
+class RequestLike(models.Model):
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
-
-
-
-class RequestSentLikes(models.Model):
-    request = models.ForeignKey(Request, on_delete=models.CASCADE)
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
-
-
-
-class RequestReceivedLikes(models.Model):
-    request = models.ForeignKey(Request, on_delete=models.CASCADE)
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    sent_like_to_offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    received_like_from_offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
