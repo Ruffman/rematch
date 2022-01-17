@@ -1,14 +1,31 @@
 <div class="accordion" id="accordionSentLikes">
   <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sentLikes" aria-expanded="true" aria-controls="collapseOne">
-          Sent Likes
-        </button>
-      </h2>
-      <div id="sentLikes" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sentLikes" aria-expanded="true" aria-controls="collapseOne">
+        Sent Likes
+      </button>
+    </h2>
+    <div id="sentLikes" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+      <div class="accordion-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>sent like to </th>
+              <th>prop match object_type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sent_like in like_list %}
+            <tr>
+              <th>1</th>
+              <td>{{ match.id }}</td>
+              <td>{{ match.object_type }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
 </div>
