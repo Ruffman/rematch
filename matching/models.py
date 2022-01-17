@@ -20,12 +20,12 @@ class TrueMatch(models.Model):
 # sent and received likes based on an offer object
 class OfferLike(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
-    sent_like_to_request = models.ForeignKey(Request, on_delete=models.CASCADE)
-    received_like_from_request = models.ForeignKey(Request, on_delete=models.CASCADE)
+    sent_like_to_request = models.ForeignKey(Request, on_delete=models.CASCADE, related_name="sentLikeTo")
+    received_like_from_request = models.ForeignKey(Request, on_delete=models.CASCADE, related_name="receivedLikeFrom")
 
 
 # sent and received likes based on a request object
 class RequestLike(models.Model):
     request = models.ForeignKey(Request, on_delete=models.CASCADE)
-    sent_like_to_offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
-    received_like_from_offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    sent_like_to_offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name="sentLikeTo")
+    received_like_from_offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name="receivedLikeFrom")
