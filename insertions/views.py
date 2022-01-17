@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.http import Http404
 
 from insertions.models import Object, Offer, Request
+from matching.models import ProposedMatch, OfferLike, RequestLike
 
 
 
@@ -18,26 +19,31 @@ from insertions.models import Object, Offer, Request
 class InsertionDetailView(LoginRequiredMixin, generic.ListView):
     template_name = 'insertion_detail.html'
 
+    def get_queryset(self, **kwargs):
+        try:
+            if self.kwargs['type'] == 'offer':
+                self.object_queryset = Offer.objects.get(id=self.kwargs['id'])
+                self.proposed_match_queryset = ProposedMatch.objects.filter(offer_id=self.kwargs['id'])
+                self.like_queryset = OfferLike.objects.filter(offer_id=self.kwargs['id'])
+            elif self.kwargs['type'] == 'request':
+                self.object_queryset = Request.objects.get(id=self.kwargs['id'])
+                self.proposed_match_queryset = ProposedMatch.objects.filter(request_id=self.kwargs['id'])
+                self.like_queryset = RequestLike.objects.filter(request_id=self.kwargs['id'])
+            else:
+                raise Http404
+        except:
+            raise Http404
+        else:
+            return chain(self.object_queryset, self.proposed_match_queryset, self.like_queryset)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        if self.kwargs['type'] == 'offer':
-            context['object'] = Offer.objects.get(id=self.kwargs['id'])
-        elif self.kwargs['type'] == 'request':
-            context['object'] = Request.objects.get(id=self.kwargs['id'])
+        context['object'] = self.object_queryset
+        context['proposed_match_list'] = self.proposed_match_queryset
+        context['like_list'] = self.like_queryset
 
         return context
 
-    def get_queryset(self, **kwargs):
-
-        if self.kwargs['type'] == 'offer':
-            queryset = Offer.objects.get(id=self.kwargs['id'])
-        elif self.kwargs['type'] == 'request':
-            queryset = Request.objects.get(id=self.kwargs['id'])
-        else:
-            raise Http404
-
-        return queryset
 
 
 class NewOfferView(LoginRequiredMixin, generic.edit.CreateView):
