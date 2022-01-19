@@ -3,8 +3,11 @@
 {% block content %}
   {% block match_user_data %}
     <h1>Match user data</h1>
+    {% include "accounts_public_data.html" %}
   {% endblock %}
   {% block match_insertion_data %}
     <h1>Match insertion data</h1>
+    {% include "_insertion.html" %}
   {% endblock %}
+  <a class="btn btn-primary" href="{% url 'insertions:ins_overview' %}" role="button">Send Like</a>
 {% endblock %}
