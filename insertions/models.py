@@ -60,8 +60,15 @@ class Object(models.Model):
 class Offer(Object):
     user = models.ForeignKey(User, verbose_name='offer', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'Offer'
+
     def __str__(self):
         return self.user.username
+
+    @register.filter
+    def verbose_name(self):
+        return self._meta.verbose_name
 
     def save(self, *args, **kwargs):
         super().save(args, **kwargs)
@@ -74,8 +81,15 @@ class Offer(Object):
 class Request(Object):
     user = models.ForeignKey(User, verbose_name='request', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'Request'
+
     def __str__(self):
         return self.user.username
+
+    @register.filter
+    def verbose_name(self):
+        return self._meta.verbose_name
 
     #class Meta:
     #    unique_together = ['user', 'object']
