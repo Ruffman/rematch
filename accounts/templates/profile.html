@@ -2,5 +2,10 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-  <h1>Userprofile</h1>
+  {% block public_data %}
+    {% include "accounts_public_data.html" %}
+  {% endblock %}
+  {% block private_data %}
+    {% include "accounts_private_data.html" %}
+  {% endblock %}
 {% endblock %}
