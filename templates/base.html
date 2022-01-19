@@ -23,137 +23,140 @@
 
   <body>
 
-    <!-- SIDEBAR -->
-    <nav>
-      <div class="sidebar-top">
-        <span class="shrink-btn">
-          <i class='bx bx-chevron-left'></i>
-        </span>
-        <img src="./img/logo.png" class="logo" alt="">
-        <h3 class="hide">ReMatch</h3>
-      </div>
+    <div>
+      <!-- SIDEBAR -->
+      <nav>
+        <div class="sidebar-top">
+          <span class="shrink-btn">
+            <i class='bx bx-chevron-left'></i>
+          </span>
+          <img src="./img/logo.png" class="logo" alt="">
+          <h3 class="hide">ReMatch</h3>
+        </div>
 
-      <div class="search">
-        <i class='bx bx-search'></i>
-        <input type="text" class="hide" placeholder="Quick Search ...">
-      </div>
+        <div class="search">
+          <i class='bx bx-search'></i>
+          <input type="text" class="hide" placeholder="Quick Search ...">
+        </div>
 
-      {% if user.is_authenticated %}
-      <div class="sidebar-links">
-        <ul>
-          <div class="active-tab"></div>
-          <li class="tooltip-element" data-tooltip="0">
-            <a href="{% url 'insertions:ins_overview' %}" class="active" data-active="0">
-              <div class="icon">
-                <i class='bx bx-tachometer'></i>
-                <i class='bx bxs-tachometer'></i>
-              </div>
-              <span class="link hide">Overview</span>
-            </a>
-          </li>
-          <li class="tooltip-element" data-tooltip="1">
-            <a href="#" data-active="1">
-              <div class="icon">
-                <i class='bx bx-folder'></i>
-                <i class='bx bxs-folder'></i>
-              </div>
-              <span class="link hide">Offer</span>
-            </a>
-          </li>
-          <li class="tooltip-element" data-tooltip="2">
-            <a href="#" data-active="2">
-              <div class="icon">
-                <i class='bx bx-message-square-detail'></i>
-                <i class='bx bxs-message-square-detail'></i>
-              </div>
-              <span class="link hide">Request</span>
-            </a>
-          </li>
-          <li class="tooltip-element" data-tooltip="3">
-            <a href="{% url 'conversations:con_overview' %}" data-active="3">
-              <div class="icon">
-                <i class='bx bx-bar-chart-square'></i>
-                <i class='bx bxs-bar-chart-square'></i>
-              </div>
-              <span class="link hide">Conversation</span>
-            </a>
-          </li>
-          <div class="tooltip">
-            <span class="show">Overview</span>
-            <span>Offer</span>
-            <span>Request</span>
-            <span>Conversation</span>
-          </div>
-        </ul>
-
-        <h4 class="hide">TODO Divider</h4>
-
-        <ul>
-          <li class="tooltip-element" data-tooltip="0">
-            <a href="{% url 'accounts:profile' %}" data-active="4">
-              <div class="icon">
-                <i class='bx bx-notepad'></i>
-                <i class='bx bxs-notepad'></i>
-              </div>
-              <span class="link hide">Profile</span>
-            </a>
-          </li>
-          <li class="tooltip-element" data-tooltip="1">
-            <a href="#" data-active="5">
-              <div class="icon">
-                <i class='bx bx-help-circle'></i>
-                <i class='bx bxs-help-circle'></i>
-              </div>
-              <span class="link hide">Help</span>
-            </a>
-          </li>
-          <li class="tooltip-element" data-tooltip="2">
-            <a href="#" data-active="6">
-              <div class="icon">
-                <i class='bx bx-cog'></i>
-                <i class='bx bxs-cog'></i>
-              </div>
-              <span class="link hide">Settings</span>
-            </a>
-          </li>
-          <div class="tooltip">
-            <span class="show">Profile</span>
-            <span>Help</span>
-            <span>Settings</span>
-          </div>
-        </ul>
-      </div>
-      {% endif %}
-
-      <div class="sidebar-footer">
-        <a href="{% url 'accounts:profile' %}" class="account tooltip-element" data-tooltip="0">
-          <i class='bx bx-user'></i>
-        </a>
-        <div class="admin-user tooltip-element" data-tooltip="1">
-          <div class="admin-profile hide">
-            <img src="./img/face-1.png" alt="">
-            <div class="admin-info">
-              <h3>{{ user.username }}</h3>
+        {% if user.is_authenticated %}
+        <div class="sidebar-links">
+          <ul>
+            <div class="active-tab"></div>
+            <li class="tooltip-element" data-tooltip="0">
+              <a href="{% url 'insertions:ins_overview' %}" class="active" data-active="0">
+                <div class="icon">
+                  <i class='bx bx-tachometer'></i>
+                  <i class='bx bxs-tachometer'></i>
+                </div>
+                <span class="link hide">Overview</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="1">
+              <a href="#" data-active="1">
+                <div class="icon">
+                  <i class='bx bx-folder'></i>
+                  <i class='bx bxs-folder'></i>
+                </div>
+                <span class="link hide">Offer</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="2">
+              <a href="#" data-active="2">
+                <div class="icon">
+                  <i class='bx bx-message-square-detail'></i>
+                  <i class='bx bxs-message-square-detail'></i>
+                </div>
+                <span class="link hide">Request</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="3">
+              <a href="{% url 'conversations:con_overview' %}" data-active="3">
+                <div class="icon">
+                  <i class='bx bx-bar-chart-square'></i>
+                  <i class='bx bxs-bar-chart-square'></i>
+                </div>
+                <span class="link hide">Conversation</span>
+              </a>
+            </li>
+            <div class="tooltip">
+              <span class="show">Overview</span>
+              <span>Offer</span>
+              <span>Request</span>
+              <span>Conversation</span>
             </div>
-          </div>
-          <a href="{% url 'accounts:logout' %}" class="log-out">
-            <i class='bx bx-log-out'></i>
+          </ul>
+
+          <h4 class="hide">TODO Divider</h4>
+
+          <ul>
+            <li class="tooltip-element" data-tooltip="0">
+              <a href="{% url 'accounts:acc_profile' user.username %}" data-active="4">
+                <div class="icon">
+                  <i class='bx bx-notepad'></i>
+                  <i class='bx bxs-notepad'></i>
+                </div>
+                <span class="link hide">Profile</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="1">
+              <a href="#" data-active="5">
+                <div class="icon">
+                  <i class='bx bx-help-circle'></i>
+                  <i class='bx bxs-help-circle'></i>
+                </div>
+                <span class="link hide">Help</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="2">
+              <a href="#" data-active="6">
+                <div class="icon">
+                  <i class='bx bx-cog'></i>
+                  <i class='bx bxs-cog'></i>
+                </div>
+                <span class="link hide">Settings</span>
+              </a>
+            </li>
+            <div class="tooltip">
+              <span class="show">Profile</span>
+              <span>Help</span>
+              <span>Settings</span>
+            </div>
+          </ul>
+        </div>
+
+        <div class="sidebar-footer">
+          <a href="{% url 'accounts:acc_profile' user.username %}" class="account tooltip-element" data-tooltip="0">
+            <i class='bx bx-user'></i>
           </a>
+          <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-profile hide">
+              <img src="./img/face-1.png" alt="">
+              <div class="admin-info">
+                <h3>{{ user.username }}</h3>
+              </div>
+            </div>
+            <a href="{% url 'accounts:logout' %}" class="log-out">
+              <i class='bx bx-log-out'></i>
+            </a>
+          </div>
+          <div class="tooltip">
+            <span class="show">John Doe</span>
+            <span>Logout</span>
+          </div>
         </div>
-        <div class="tooltip">
-          <span class="show">John Doe</span>
-          <span>Logout</span>
-        </div>
-      </div>
-    </nav>
-    <!-- END SIDEBAR -->
+      </nav>
+      {% endif %}
+      <!-- END SIDEBAR -->
+    </div>
+
 
     <main>
 
       <div class="container">
-       {% block content %}
-       <h2>How do you doooo, fellow kid?</h2>
-       {% endblock content %}
+        {% block content %}
+        <h2>How do you doooo, fellow kid?</h2>
+        {% endblock content %}
      </div>
 
     </main>
