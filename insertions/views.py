@@ -82,8 +82,9 @@ class InsertionOverView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         try:
-            self.offer_queryset = Offer.objects.all()
-            self.request_queryset = Request.objects.all()
+            current_user_id = self.request.user.id
+            self.offer_queryset = Offer.objects.filter(user_id=current_user_id)
+            self.request_queryset = Request.objects.filter(user_id=current_user_id)
         except:
             raise Http404
         else:
