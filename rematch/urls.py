@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('insertions/', include('insertions.urls')),
     path('conversations/', include('conversations.urls')),
+    path('matching/', include('matching.urls')),
 ]
