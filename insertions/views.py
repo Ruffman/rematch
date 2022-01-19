@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.http import Http404
 
 from insertions.models import Object, Offer, Request
-from matching.models import ProposedMatch, OfferLike, RequestLike
+from matching.models import Proposed_Match, Offer_Like, Request_Like
 
 
 
@@ -24,14 +24,14 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
             self.id = self.kwargs['id']
             if self.kwargs['type'] == Offer.__name__:
                 self.object_queryset = Offer.objects.get(id=self.id)
-                self.request_id_queryset = ProposedMatch.objects.filter(offer_id=self.id).values('request_id')
+                self.request_id_queryset = Proposed_Match.objects.filter(offer_id=self.id).values('request_id')
                 self.proposed_match_queryset = Request.objects.filter(id__in=self.request_id_queryset)
-                self.like_queryset = OfferLike.objects.filter(offer_id=self.id)
+                self.like_queryset = Offer_Like.objects.filter(offer_id=self.id)
             elif self.kwargs['type'] == Request.__name__:
                 self.object_queryset = Request.objects.get(id=self.id)
-                self.offer_id_queryset = ProposedMatch.objects.filter(request_id=self.id).values('offer_id')
+                self.offer_id_queryset = Proposed_Match.objects.filter(request_id=self.id).values('offer_id')
                 self.proposed_match_queryset = Offer.objects.filter(id__in=self.offer_id_queryset)
-                self.like_queryset = RequestLike.objects.filter(request_id=self.id)
+                self.like_queryset = Request_Like.objects.filter(request_id=self.id)
             else:
                 raise Http404
         except:

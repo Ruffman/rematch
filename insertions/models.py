@@ -23,15 +23,15 @@ class Object(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
-    title = models.CharField(max_length=127)
-    short_description = models.CharField(max_length=255)
-    zip_code = models.IntegerField()
-    city_name = models.CharField(max_length=255)
-    street_name = models.CharField(max_length=255)
-    street_number = models.IntegerField()
-    living_area = models.IntegerField()
-    monthly_rent_price = models.DecimalField(decimal_places=2, max_digits=9)
-    buy_price = models.DecimalField(decimal_places=2, max_digits=17)
+    title = models.CharField(max_length=127, default='Default Title')
+    short_description = models.CharField(max_length=255, default='Default Short Description')
+    zip_code = models.IntegerField(default=00000)
+    city_name = models.CharField(max_length=255, default='Default City')
+    street_name = models.CharField(max_length=255, default='Default Street Name')
+    street_number = models.IntegerField(default=000)
+    living_area = models.IntegerField(default=000)
+    monthly_rent_price = models.DecimalField(decimal_places=2, max_digits=9, default=0)
+    buy_price = models.DecimalField(decimal_places=2, max_digits=17, default=0)
 
     class Meta:
         abstract = True
