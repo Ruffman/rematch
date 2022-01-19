@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'django_extensions',
     'accounts.apps.AccountsConfig',
     'conversations.apps.ConversationsConfig',
     'insertions.apps.InsertionsConfig',
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'rematch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'redb',
+        'NAME': 'fuck',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
@@ -154,3 +155,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'base'
 LOGOUT_REDIRECT_URL = 'landing'
+
+AUTH_USER_MODEL = 'accounts.User'
