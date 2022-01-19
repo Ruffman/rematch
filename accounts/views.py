@@ -1,6 +1,7 @@
-
-from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
 from . import forms
@@ -13,5 +14,8 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('accounts:login')
     template_name = 'signup.html'
 
-class ProfileView(TemplateView):
-    template_name = 'profile.html'
+class ProfileView(DetailView, LoginRequiredMixin):
+    template_name = 'accounts_profile.html'
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
