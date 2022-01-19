@@ -66,16 +66,6 @@ class Offer(Object):
     def __str__(self):
         return self.user.username
 
-    @register.filter
-    def verbose_name(self):
-        return self._meta.verbose_name
-
-    def save(self, *args, **kwargs):
-        super().save(args, **kwargs)
-
-    #class Meta:
-    #    unique_together = ['user', 'object']
-
 
 
 class Request(Object):
@@ -86,10 +76,3 @@ class Request(Object):
 
     def __str__(self):
         return self.user.username
-
-    @register.filter
-    def verbose_name(self):
-        return self._meta.verbose_name
-
-    #class Meta:
-    #    unique_together = ['user', 'object']
