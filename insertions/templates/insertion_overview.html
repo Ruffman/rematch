@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
+{% load project_tags %}
 
 {% block content %}
   <!-- OFFER LIST -->
@@ -25,7 +26,7 @@
             <div class="card-body">
               <h5 class="card-title">Sample Title</h5>
               <p class="card-text">{{ offer.object_type }}</p>
-              <a href="{% url 'insertions:detail' id=offer.id type='offer' %}" class="btn btn-primary stretched-link">View matches</a>
+              <a href="{% url 'insertions:detail' id=offer.id type=offer|verbose_name %}" class="btn btn-primary stretched-link">View matches</a>
             </div>
           </div>
         </div>
@@ -59,7 +60,7 @@
             <div class="card-body">
               <h5 class="card-title">Sample Title</h5>
               <p class="card-text">{{ request.object_type }}</p>
-              <a href="{% url 'insertions:detail' id=request.id type='request' %}" class="btn btn-primary stretched-link">View matches</a>
+              <a href="{% url 'insertions:detail' id=request.id type=request|verbose_name %}" class="btn btn-primary stretched-link">View matches</a>
             </div>
           </div>
         </div>

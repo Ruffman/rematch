@@ -22,12 +22,12 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self, **kwargs):
         try: # TODO: optimize so match_queryset is a subset of insertion objects and likes are no unnecessary querys
             self.id = self.kwargs['id']
-            if self.kwargs['type'] == 'offer':
+            if self.kwargs['type'] == Offer.__name__:
                 self.object_queryset = Offer.objects.get(id=self.id)
                 self.request_id_queryset = ProposedMatch.objects.filter(offer_id=self.id).values('request_id')
                 self.proposed_match_queryset = Request.objects.filter(id__in=self.request_id_queryset)
                 self.like_queryset = OfferLike.objects.filter(offer_id=self.id)
-            elif self.kwargs['type'] == 'request':
+            elif self.kwargs['type'] == Request.__name__:
                 self.object_queryset = Request.objects.get(id=self.id)
                 self.offer_id_queryset = ProposedMatch.objects.filter(request_id=self.id).values('offer_id')
                 self.proposed_match_queryset = Offer.objects.filter(id__in=self.offer_id_queryset)
