@@ -1,0 +1,16 @@
+[
+  {
+    "model": "insertions.finance_type",
+    "pk": 1,
+    "fields": {
+      "type_name": "Mieten"
+    }
+  },
+  {
+    "model": "insertions.finance_type",
+    "pk": 2,
+    "fields": {
+      "type_name": "Kaufen"
+    }
+  },
+]

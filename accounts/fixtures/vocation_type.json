@@ -1,0 +1,23 @@
+[
+  {
+    "model": "accounts.vocation_type",
+    "pk": 1,
+    "fields": {
+      "type_name": "Beamter:in"
+    }
+  },
+  {
+    "model": "accounts.vocation_type",
+    "pk": 2,
+    "fields": {
+      "type_name": "Akademiker:in"
+    }
+  },
+  {
+    "model": "accounts.vocation_types",
+    "pk": 3,
+    "fields": {
+      "type_name": "Handwerker:in"
+    }
+  },
+]

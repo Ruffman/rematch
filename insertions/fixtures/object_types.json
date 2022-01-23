@@ -3,28 +3,35 @@
     "model": "insertions.object_type",
     "pk": 1,
     "fields": {
-      "type_name": "Room"
+      "type_name": "Zimmer"
     }
   },
   {
     "model": "insertions.object_type",
     "pk": 2,
     "fields": {
-      "type_name": "Apartment"
+      "type_name": "Wohnung"
     }
   },
   {
     "model": "insertions.object_type",
     "pk": 3,
     "fields": {
-      "type_name": "House"
+      "type_name": "Einfamilienhaus"
     }
   },
   {
     "model": "insertions.object_type",
     "pk": 4,
     "fields": {
-      "type_name": "Property"
+      "type_name": "Reihenhaus"
     }
-  }
+  },
+  {
+    "model": "insertions.object_type",
+    "pk": 5,
+    "fields": {
+      "type_name": "Grundstück"
+    }
+  },
 ]
