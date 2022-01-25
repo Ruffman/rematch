@@ -105,10 +105,10 @@ class Facility_Types(models.Model):
 
 
 class Heating_Type(models.Model):
-    name = models.CharField(max_length=16)
+    type_name = models.CharField(max_length=16)
 
     def __str__(self):
-        return self.name
+        return self.type_name
 
 
 
