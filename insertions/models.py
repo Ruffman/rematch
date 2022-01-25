@@ -56,19 +56,51 @@ class Object_Address(models.Model):
         return (self.county.__str__() + '::' + str(self.zip_code) + '::' + self.city_name + '::' + self.street_name + '::' + str(self.street_number))
 
 
-class Recreation_Area_Types(models.Model): # TODO: Convert the fixture into bool fields
-    name = models.CharField(max_length=32)
 
-    def __str__(self):
-        return self.name
+class Object_Location_Detail(models.Model):
+    is_sunny = models.BooleanField(default=False, blank=True)
+    is_calm = models.BooleanField(default=False, blank=True)
+    at_hillside = models.BooleanField(default=False, blank=True)
+    near_public_transport = models.BooleanField(default=False, blank=True)
+    near_freeway = models.BooleanField(default=False, blank=True)
+    near_stores = models.BooleanField(default=False, blank=True)
+    near_recreation = models.BooleanField(default=False, blank=True)
+    near_education = models.BooleanField(default=False, blank=True)
+    has_nice_view = models.BooleanField(default=False, blank=True)
+
+    # def __str__(self):
+    #     return self.name
 
 
 
-class Facility_Types(models.Model): # TODO: Convert the fixture into bool fields
-    name = models.CharField(max_length=32)
+class Recreation_Area_Types(models.Model):
+    has_balcony = models.BooleanField(default=False, blank=True)
+    has_roof_terrace = models.BooleanField(default=False, blank=True)
+    has_terrace = models.BooleanField(default=False, blank=True)
+    has_garden = models.BooleanField(default=False, blank=True)
+    has_winter_garden = models.BooleanField(default=False, blank=True)
+    has_loggia = models.BooleanField(default=False, blank=True)
+    something_different = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
+
+
+
+class Facility_Types(models.Model):
+    has_storeroom = models.BooleanField(default=False, blank=True)
+    has_carport = models.BooleanField(default=False, blank=True)
+    has_fitted_kitchen = models.BooleanField(default=False, blank=True)
+    has_elevator = models.BooleanField(default=False, blank=True)
+    has_garage = models.BooleanField(default=False, blank=True)
+    has_cellar = models.BooleanField(default=False, blank=True)
+    has_parking_area = models.BooleanField(default=False, blank=True)
+    is_furnished = models.BooleanField(default=False, blank=True)
+    is_barrier_free = models.BooleanField(default=False, blank=True)
+    is_partially_furnished = models.BooleanField(default=False, blank=True)
+
+    # def __str__(self):
+    #     return self.name
 
 
 
@@ -111,16 +143,8 @@ class Object(PolymorphicModel):
 
     living_area = models.IntegerField(null=True, blank=True)
 
-    # object location properties TODO: make own database
-    location_is_sunny = models.BooleanField(default=False, blank=True)
-    location_is_calm = models.BooleanField(default=False, blank=True)
-    location_at_hillside = models.BooleanField(default=False, blank=True)
-    location_near_public_transport = models.BooleanField(default=False, blank=True)
-    location_near_freeway = models.BooleanField(default=False, blank=True)
-    location_near_stores = models.BooleanField(default=False, blank=True)
-    location_near_recreation = models.BooleanField(default=False, blank=True)
-    location_near_education = models.BooleanField(default=False, blank=True)
-    location_has_nice_view = models.BooleanField(default=False, blank=True)
+    # object location properties
+    location_details = models.OneToOneField(Object_Location_Detail, on_delete=models.PROTECT)
 
     # recreational area
     recreational_area_detail = models.OneToOneField(Recreation_Area_Types, on_delete=models.PROTECT)
@@ -147,8 +171,7 @@ class Object(PolymorphicModel):
 
     def __str__(self):
         return (self.object_type.__str__() + '::' + self.finance_type.__str__() + '::'
-                + self.object_address.__str__() + '::' + self.title + '::' + self.user.__str__()
-)
+                + self.object_address.__str__() + '::' + self.title + '::' + self.user.__str__())
 
     def save(self, *args, **kwargs):
         super().save(args, **kwargs)

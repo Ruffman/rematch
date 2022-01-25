@@ -1,0 +1,23 @@
+[
+  {
+    "model": "insertions.heating_type",
+    "pk": 1,
+    "fields": {
+      "type_name": "Gasheizung"
+    }
+  },
+  {
+    "model": "insertions.heating_type",
+    "pk": 2,
+    "fields": {
+      "type_name": "Stromheizung"
+    }
+  },
+  {
+    "model": "insertions.heating_type",
+    "pk": 3,
+    "fields": {
+      "type_name": "Fernwärme"
+    }
+  },
+]
