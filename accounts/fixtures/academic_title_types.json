@@ -3,14 +3,14 @@
     "model": "accounts.academic_title_type",
     "pk": 1,
     "fields": {
-      "type_name": "Prof. "
+      "type_name": "Prof."
     }
   },
   {
     "model": "accounts.academic_title_type",
     "pk": 2,
     "fields": {
-      "type_name": "Dr. "
+      "type_name": "Dr."
     }
-  },
+  }
 ]

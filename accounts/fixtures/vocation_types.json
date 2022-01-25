@@ -14,10 +14,10 @@
     }
   },
   {
-    "model": "accounts.vocation_types",
+    "model": "accounts.vocation_type",
     "pk": 3,
     "fields": {
       "type_name": "Handwerker:in"
     }
-  },
+  }
 ]

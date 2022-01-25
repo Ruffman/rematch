@@ -17,7 +17,7 @@
     "model": "insertions.heating_type",
     "pk": 3,
     "fields": {
-      "type_name": "Fernwärme"
+      "type_name": "Fernwaerme"
     }
-  },
+  }
 ]
