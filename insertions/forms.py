@@ -1,5 +1,7 @@
 from django import forms
+
 from . import models
+
 
 class InsertionForm(forms.ModelForm):
     class Meta:

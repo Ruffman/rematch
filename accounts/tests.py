@@ -1,7 +1,8 @@
-from django.test import TestCase, Client
-from .models import User
 import datetime
 
+from django.test import Client, TestCase
+
+from .models import User
 
 
 # Create your tests here.

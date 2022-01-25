@@ -1,8 +1,7 @@
 from django.db import models
 
-
-
 from insertions.models import Offer, Request
+
 
 # Create your models here.
 # table for the matches we recommend User

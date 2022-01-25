@@ -1,12 +1,12 @@
-from django.db import models
-from polymorphic.models import PolymorphicModel
-from django.utils import timezone
-
-
 from django.contrib.auth import get_user_model
+from django.db import models
+from django.utils import timezone
+from polymorphic.models import PolymorphicModel
+
 User = get_user_model()
 
 from django import template
+
 register = template.Library()
 
 # Create your models here.
@@ -28,7 +28,7 @@ class Finance_Type(models.Model):
 
 
 class State(models.Model):
-    name = models.CharField(max_length=31)
+    name = models.CharField(max_length=32)
 
     def __str__(self):
         return self.name
@@ -37,7 +37,7 @@ class State(models.Model):
 
 class County(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
-    name = models.CharField(max_length=63)
+    name = models.CharField(max_length=64)
 
     def __str__(self):
         return self.state.__str__() + '::' + self.name
@@ -48,12 +48,35 @@ class Object_Address(models.Model):
     state = models.ForeignKey(State, on_delete=models.PROTECT)
     county = models.ForeignKey(County, on_delete=models.PROTECT)
     zip_code = models.IntegerField(default=00000)
-    city_name = models.CharField(max_length=255, default='Default City')
-    street_name = models.CharField(max_length=255, default='Default Street Name')
+    city_name = models.TextField(default='Default City')
+    street_name = models.TextField(default='Default Street Name')
     street_number = models.IntegerField(default=000)
 
     def __str__(self):
         return (self.county.__str__() + '::' + str(self.zip_code) + '::' + self.city_name + '::' + self.street_name + '::' + str(self.street_number))
+
+
+class Recreation_Area_Types(models.Model): # TODO: Convert the fixture into bool fields
+    name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.name
+
+
+
+class Facility_Types(models.Model): # TODO: Convert the fixture into bool fields
+    name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.name
+
+
+
+class Heating_Type(models.Model):
+    name = models.CharField(max_length=16)
+
+    def __str__(self):
+        return self.name
 
 
 
@@ -67,15 +90,18 @@ class Object(PolymorphicModel):
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 
-    title = models.CharField(max_length=127, default='Default Title', verbose_name='Titel')
-    short_description = models.CharField(max_length=255, default='Default Short Description', verbose_name='Kurzbeschreibung')
+    title = models.TextField(default='Default Title', verbose_name='Titel')
+    short_description = models.TextField(default='Default Short Description', verbose_name='Kurzbeschreibung')
 
     # ideal customer idea / ideal object propertys
     number_adults = models.IntegerField(null=True, blank=True)
     number_couples = models.IntegerField(null=True, blank=True)
     number_children = models.IntegerField(null=True, blank=True)
 
-    number_pets = models.IntegerField(null=True, blank=True)
+
+    pets_number = models.IntegerField(null=True, blank=True)
+    pets_are_allowed = models.BooleanField(blank=True)
+
     number_cars = models.IntegerField(null=True, blank=True)
 
     number_homeoffice = models.IntegerField(null=True, blank=True)
@@ -85,7 +111,7 @@ class Object(PolymorphicModel):
 
     living_area = models.IntegerField(null=True, blank=True)
 
-    # object location properties
+    # object location properties TODO: make own database
     location_is_sunny = models.BooleanField(default=False, blank=True)
     location_is_calm = models.BooleanField(default=False, blank=True)
     location_at_hillside = models.BooleanField(default=False, blank=True)
@@ -96,6 +122,15 @@ class Object(PolymorphicModel):
     location_near_education = models.BooleanField(default=False, blank=True)
     location_has_nice_view = models.BooleanField(default=False, blank=True)
 
+    # recreational area
+    recreational_area_detail = models.OneToOneField(Recreation_Area_Types, on_delete=models.PROTECT)
+
+    # facilities
+    facilities_detail = models.OneToOneField(Facility_Types, on_delete=models.PROTECT)
+
+    # heating type
+    heating_type = models.ForeignKey(Heating_Type, on_delete=models.PROTECT)
+
     # object building properties
     is_modern = models.BooleanField(default=False, blank=True)
     is_built_sustainable = models.BooleanField(default=False, blank=True)
@@ -103,6 +138,9 @@ class Object(PolymorphicModel):
     # availability
     is_available_now = models.BooleanField(default=False, blank=True)
     available_at_date = models.DateField(null=True, blank=True)
+
+    # if object is Apartment or Room
+    living_floor = models.IntegerField(null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -118,8 +156,10 @@ class Object(PolymorphicModel):
 
 
 class Offer(Object):
-    monthly_rent_price = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=9)
+    monthly_rent_cold = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=9)
+    monthly_incidentals_price = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=9) # TODO model für NBK
     buy_price = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=17)
+    security_deposit = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=17)
 
     class Meta:
         verbose_name = 'Offer'

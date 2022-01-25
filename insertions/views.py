@@ -1,16 +1,15 @@
 from itertools import chain
 
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
+from django.http import Http404
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import Http404
 
 from insertions.models import Object, Offer, Request
-from matching.models import Proposed_Match, Offer_Like, Request_Like
-
-
+from matching.models import Offer_Like, Proposed_Match, Request_Like
 
 # Create your views here.
 
