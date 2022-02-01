@@ -26,88 +26,6 @@ class Finance_Type(models.Model):
         return self.type_name
 
 
-# class State(models.Model):
-#     name = models.CharField(max_length=32)
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-# class County(models.Model):
-#     state = models.ForeignKey(State, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=64)
-#
-#     def __str__(self):
-#         return self.state.__str__() + "::" + self.name
-
-
-class Object_Address(models.Model):
-    # state = models.ForeignKey(State, on_delete=models.PROTECT)
-    # county = models.ForeignKey(County, on_delete=models.PROTECT)
-    zip_code = models.IntegerField(default=00000)
-    city_name = models.TextField(default="Default City")
-    street_name = models.TextField(default="Default Street Name")
-    street_number = models.IntegerField(default=000)
-
-    def __str__(self):
-        return (
-            # self.county.__str__()
-            # + "::"
-            # +
-            str(self.zip_code)
-            + "::"
-            + self.city_name
-            + "::"
-            + self.street_name
-            + "::"
-            + str(self.street_number)
-        )
-
-
-class Object_Location_Detail(models.Model):
-    is_sunny = models.BooleanField(default=False)
-    is_calm = models.BooleanField(default=False)
-    at_hillside = models.BooleanField(default=False)
-    near_public_transport = models.BooleanField(default=False)
-    near_freeway = models.BooleanField(default=False)
-    near_stores = models.BooleanField(default=False)
-    near_recreation = models.BooleanField(default=False)
-    near_education = models.BooleanField(default=False)
-    has_nice_view = models.BooleanField(default=False)
-
-    # def __str__(self):
-    #     return self.name
-
-
-class Recreation_Area_Types(models.Model):
-    has_balcony = models.BooleanField(default=False)
-    has_roof_terrace = models.BooleanField(default=False)
-    has_terrace = models.BooleanField(default=False)
-    has_garden = models.BooleanField(default=False)
-    has_winter_garden = models.BooleanField(default=False)
-    has_loggia = models.BooleanField(default=False)
-    something_different = models.TextField(blank=True)
-
-    # def __str__(self):
-    #     return self.name
-
-
-class Facility_Types(models.Model):
-    has_storeroom = models.BooleanField(default=False)
-    has_carport = models.BooleanField(default=False)
-    has_fitted_kitchen = models.BooleanField(default=False)
-    has_elevator = models.BooleanField(default=False)
-    has_garage = models.BooleanField(default=False)
-    has_cellar = models.BooleanField(default=False)
-    has_parking_area = models.BooleanField(default=False)
-    is_furnished = models.BooleanField(default=False)
-    is_barrier_free = models.BooleanField(default=False)
-    is_partially_furnished = models.BooleanField(default=False)
-
-    # def __str__(self):
-    #     return self.name
-
-
 class Heating_Type(models.Model):
     type_name = models.CharField(max_length=16)
 
@@ -128,13 +46,6 @@ class Object(PolymorphicModel):
     finance_type = models.ForeignKey(
         Finance_Type,
         verbose_name="Wohnart",
-        on_delete=models.PROTECT,
-        null=True,
-        blank=True,
-    )
-    object_address = models.ForeignKey(
-        Object_Address,
-        verbose_name="Objektadresse",
         on_delete=models.PROTECT,
         null=True,
         blank=True,
@@ -164,21 +75,6 @@ class Object(PolymorphicModel):
     number_bedrooms = models.IntegerField(null=True, blank=True)
 
     living_area = models.IntegerField(null=True, blank=True)
-
-    # object location properties
-    location_details = models.OneToOneField(
-        Object_Location_Detail, on_delete=models.PROTECT
-    )
-
-    # recreational area
-    recreational_area_detail = models.OneToOneField(
-        Recreation_Area_Types, on_delete=models.PROTECT
-    )
-
-    # facilities
-    facilities_detail = models.OneToOneField(
-        Facility_Types, on_delete=models.PROTECT
-    )
 
     # heating type
     heating_type = models.ForeignKey(Heating_Type, on_delete=models.PROTECT)
@@ -212,6 +108,21 @@ class Object(PolymorphicModel):
 
     def save(self, *args, **kwargs):
         super().save(args, **kwargs)
+
+
+# class State(models.Model):
+#     name = models.CharField(max_length=32)
+#
+#     def __str__(self):
+#         return self.name
+#
+#
+# class County(models.Model):
+#     state = models.ForeignKey(State, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=64)
+#
+#     def __str__(self):
+#         return self.state.__str__() + "::" + self.name
 
 
 class Offer(Object):
@@ -250,30 +161,93 @@ class Request(Object):
         return super().__str__()
 
 
-class Object_Image(models.Model):
-    related_offer = models.ForeignKey(
-        Offer, on_delete=models.CASCADE, null=True
-    )
-    related_request = models.ForeignKey(
-        Request, on_delete=models.CASCADE, null=True
-    )
-
-    image = models.ImageField()
+class Object_Address(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
+    request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
+    # state = models.ForeignKey(State, on_delete=models.PROTECT)
+    # county = models.ForeignKey(County, on_delete=models.PROTECT)
+    zip_code = models.IntegerField(default=00000)
+    city_name = models.TextField(default="Default City")
+    street_name = models.TextField(default="Default Street Name")
+    street_number = models.IntegerField(default=000)
+    is_important = models.BooleanField(default=False)
 
     def __str__(self):
-        if related_offer:
-            return "OfferID::" + str(self.related_offer.id)
-        if related_request:
-            return "RequestID::" + str(self.related_request.id)
+        return (
+            # self.county.__str__()
+            # + "::"
+            # +
+            str(self.zip_code)
+            + "::"
+            + self.city_name
+            + "::"
+            + self.street_name
+            + "::"
+            + str(self.street_number)
+        )
 
 
-class Important_Address(Object_Address):
-    related_offer = models.ForeignKey(
-        Offer, on_delete=models.CASCADE, null=True
-    )  # TODO: find out why naming it only offer clashes with object_address field named offer
-    related_request = models.ForeignKey(
+class Object_Location_Detail(models.Model):
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE, null=True)
+    request = models.OneToOneField(
         Request, on_delete=models.CASCADE, null=True
-    )  # TODO: find out why naming it only request clashes with object_address field named request
+    )
+    is_sunny = models.BooleanField(default=False)
+    is_calm = models.BooleanField(default=False)
+    at_hillside = models.BooleanField(default=False)
+    near_public_transport = models.BooleanField(default=False)
+    near_freeway = models.BooleanField(default=False)
+    near_stores = models.BooleanField(default=False)
+    near_recreation = models.BooleanField(default=False)
+    near_education = models.BooleanField(default=False)
+    has_nice_view = models.BooleanField(default=False)
+
+    # def __str__(self):
+    #     return self.name
+
+
+class Recreation_Area_Detail(models.Model):
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE, null=True)
+    request = models.OneToOneField(
+        Request, on_delete=models.CASCADE, null=True
+    )
+    has_balcony = models.BooleanField(default=False)
+    has_roof_terrace = models.BooleanField(default=False)
+    has_terrace = models.BooleanField(default=False)
+    has_garden = models.BooleanField(default=False)
+    has_winter_garden = models.BooleanField(default=False)
+    has_loggia = models.BooleanField(default=False)
+    something_different = models.TextField(blank=True)
+
+    # def __str__(self):
+    #     return self.name
+
+
+class Facility_Detail(models.Model):
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE, null=True)
+    request = models.OneToOneField(
+        Request, on_delete=models.CASCADE, null=True
+    )
+    has_storeroom = models.BooleanField(default=False)
+    has_carport = models.BooleanField(default=False)
+    has_fitted_kitchen = models.BooleanField(default=False)
+    has_elevator = models.BooleanField(default=False)
+    has_garage = models.BooleanField(default=False)
+    has_cellar = models.BooleanField(default=False)
+    has_parking_area = models.BooleanField(default=False)
+    is_furnished = models.BooleanField(default=False)
+    is_barrier_free = models.BooleanField(default=False)
+    is_partially_furnished = models.BooleanField(default=False)
+
+    # def __str__(self):
+    #     return self.name
+
+
+class Object_Image(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
+    request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
+
+    image = models.ImageField()
 
     def __str__(self):
         if related_offer:
