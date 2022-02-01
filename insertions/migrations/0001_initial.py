@@ -9,209 +9,543 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('accounts', '0001_initial'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("accounts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='County',
+            name="County",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
             ],
         ),
         migrations.CreateModel(
-            name='Facility_Types',
+            name="Facility_Types",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('has_storeroom', models.BooleanField(blank=True, default=False)),
-                ('has_carport', models.BooleanField(blank=True, default=False)),
-                ('has_fitted_kitchen', models.BooleanField(blank=True, default=False)),
-                ('has_elevator', models.BooleanField(blank=True, default=False)),
-                ('has_garage', models.BooleanField(blank=True, default=False)),
-                ('has_cellar', models.BooleanField(blank=True, default=False)),
-                ('has_parking_area', models.BooleanField(blank=True, default=False)),
-                ('is_furnished', models.BooleanField(blank=True, default=False)),
-                ('is_barrier_free', models.BooleanField(blank=True, default=False)),
-                ('is_partially_furnished', models.BooleanField(blank=True, default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("has_storeroom", models.BooleanField(blank=True, default=False)),
+                ("has_carport", models.BooleanField(blank=True, default=False)),
+                ("has_fitted_kitchen", models.BooleanField(blank=True, default=False)),
+                ("has_elevator", models.BooleanField(blank=True, default=False)),
+                ("has_garage", models.BooleanField(blank=True, default=False)),
+                ("has_cellar", models.BooleanField(blank=True, default=False)),
+                ("has_parking_area", models.BooleanField(blank=True, default=False)),
+                ("is_furnished", models.BooleanField(blank=True, default=False)),
+                ("is_barrier_free", models.BooleanField(blank=True, default=False)),
+                (
+                    "is_partially_furnished",
+                    models.BooleanField(blank=True, default=False),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Finance_Type',
+            name="Finance_Type",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_name', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("type_name", models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
-            name='Heating_Type',
+            name="Heating_Type",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=16)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=16)),
             ],
         ),
         migrations.CreateModel(
-            name='Object_Address',
+            name="Object_Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('zip_code', models.IntegerField(default=0)),
-                ('city_name', models.TextField(default='Default City')),
-                ('street_name', models.TextField(default='Default Street Name')),
-                ('street_number', models.IntegerField(default=0)),
-                ('county', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='insertions.county')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("zip_code", models.IntegerField(default=0)),
+                ("city_name", models.TextField(default="Default City")),
+                ("street_name", models.TextField(default="Default Street Name")),
+                ("street_number", models.IntegerField(default=0)),
+                (
+                    "county",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.county",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Object_Location_Detail',
+            name="Object_Location_Detail",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_sunny', models.BooleanField(blank=True, default=False)),
-                ('is_calm', models.BooleanField(blank=True, default=False)),
-                ('at_hillside', models.BooleanField(blank=True, default=False)),
-                ('near_public_transport', models.BooleanField(blank=True, default=False)),
-                ('near_freeway', models.BooleanField(blank=True, default=False)),
-                ('near_stores', models.BooleanField(blank=True, default=False)),
-                ('near_recreation', models.BooleanField(blank=True, default=False)),
-                ('near_education', models.BooleanField(blank=True, default=False)),
-                ('has_nice_view', models.BooleanField(blank=True, default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("is_sunny", models.BooleanField(blank=True, default=False)),
+                ("is_calm", models.BooleanField(blank=True, default=False)),
+                ("at_hillside", models.BooleanField(blank=True, default=False)),
+                (
+                    "near_public_transport",
+                    models.BooleanField(blank=True, default=False),
+                ),
+                ("near_freeway", models.BooleanField(blank=True, default=False)),
+                ("near_stores", models.BooleanField(blank=True, default=False)),
+                ("near_recreation", models.BooleanField(blank=True, default=False)),
+                ("near_education", models.BooleanField(blank=True, default=False)),
+                ("has_nice_view", models.BooleanField(blank=True, default=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Object_Type',
+            name="Object_Type",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_name', models.CharField(max_length=20)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("type_name", models.CharField(max_length=20)),
             ],
         ),
         migrations.CreateModel(
-            name='Recreation_Area_Types',
+            name="Recreation_Area_Types",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('has_balcony', models.BooleanField(blank=True, default=False)),
-                ('has_roof_terrace', models.BooleanField(blank=True, default=False)),
-                ('has_terrace', models.BooleanField(blank=True, default=False)),
-                ('has_garden', models.BooleanField(blank=True, default=False)),
-                ('has_winter_garden', models.BooleanField(blank=True, default=False)),
-                ('has_loggia', models.BooleanField(blank=True, default=False)),
-                ('something_different', models.TextField(blank=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("has_balcony", models.BooleanField(blank=True, default=False)),
+                ("has_roof_terrace", models.BooleanField(blank=True, default=False)),
+                ("has_terrace", models.BooleanField(blank=True, default=False)),
+                ("has_garden", models.BooleanField(blank=True, default=False)),
+                ("has_winter_garden", models.BooleanField(blank=True, default=False)),
+                ("has_loggia", models.BooleanField(blank=True, default=False)),
+                ("something_different", models.TextField(blank=True)),
             ],
         ),
         migrations.CreateModel(
-            name='State',
+            name="State",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=32)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=32)),
             ],
         ),
         migrations.CreateModel(
-            name='Request',
+            name="Request",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('last_updated', models.DateTimeField(auto_now=True)),
-                ('title', models.TextField(default='Default Title', verbose_name='Titel')),
-                ('short_description', models.TextField(default='Default Short Description', verbose_name='Kurzbeschreibung')),
-                ('number_adults', models.IntegerField(blank=True, null=True)),
-                ('number_couples', models.IntegerField(blank=True, null=True)),
-                ('number_children', models.IntegerField(blank=True, null=True)),
-                ('pets_number', models.IntegerField(blank=True, null=True)),
-                ('pets_are_allowed', models.BooleanField(blank=True)),
-                ('number_cars', models.IntegerField(blank=True, null=True)),
-                ('number_homeoffice', models.IntegerField(blank=True, null=True)),
-                ('number_kitchens', models.IntegerField(blank=True, null=True)),
-                ('number_bathrooms', models.IntegerField(blank=True, null=True)),
-                ('number_bedrooms', models.IntegerField(blank=True, null=True)),
-                ('living_area', models.IntegerField(blank=True, null=True)),
-                ('is_modern', models.BooleanField(blank=True, default=False)),
-                ('is_built_sustainable', models.BooleanField(blank=True, default=False)),
-                ('is_available_now', models.BooleanField(blank=True, default=False)),
-                ('available_at_date', models.DateField(blank=True, null=True)),
-                ('living_floor', models.IntegerField(blank=True, null=True)),
-                ('monthly_income', models.DecimalField(blank=True, decimal_places=2, max_digits=9, null=True)),
-                ('available_cash', models.DecimalField(blank=True, decimal_places=2, max_digits=17, null=True)),
-                ('facilities_detail', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.facility_types')),
-                ('finance_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.finance_type', verbose_name='Wohnart')),
-                ('heating_type', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='insertions.heating_type')),
-                ('location_details', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.object_location_detail')),
-                ('object_address', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.object_address', verbose_name='Objektadresse')),
-                ('object_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.object_type', verbose_name='Objektart')),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_%(app_label)s.%(class)s_set+', to='contenttypes.contenttype')),
-                ('recreational_area_detail', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.recreation_area_types')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.user')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("last_updated", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.TextField(default="Default Title", verbose_name="Titel"),
+                ),
+                (
+                    "short_description",
+                    models.TextField(
+                        default="Default Short Description",
+                        verbose_name="Kurzbeschreibung",
+                    ),
+                ),
+                ("number_adults", models.IntegerField(blank=True, null=True)),
+                ("number_couples", models.IntegerField(blank=True, null=True)),
+                ("number_children", models.IntegerField(blank=True, null=True)),
+                ("pets_number", models.IntegerField(blank=True, null=True)),
+                ("pets_are_allowed", models.BooleanField(blank=True)),
+                ("number_cars", models.IntegerField(blank=True, null=True)),
+                ("number_homeoffice", models.IntegerField(blank=True, null=True)),
+                ("number_kitchens", models.IntegerField(blank=True, null=True)),
+                ("number_bathrooms", models.IntegerField(blank=True, null=True)),
+                ("number_bedrooms", models.IntegerField(blank=True, null=True)),
+                ("living_area", models.IntegerField(blank=True, null=True)),
+                ("is_modern", models.BooleanField(blank=True, default=False)),
+                (
+                    "is_built_sustainable",
+                    models.BooleanField(blank=True, default=False),
+                ),
+                ("is_available_now", models.BooleanField(blank=True, default=False)),
+                ("available_at_date", models.DateField(blank=True, null=True)),
+                ("living_floor", models.IntegerField(blank=True, null=True)),
+                (
+                    "monthly_income",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=9, null=True
+                    ),
+                ),
+                (
+                    "available_cash",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=17, null=True
+                    ),
+                ),
+                (
+                    "facilities_detail",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.facility_types",
+                    ),
+                ),
+                (
+                    "finance_type",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.finance_type",
+                        verbose_name="Wohnart",
+                    ),
+                ),
+                (
+                    "heating_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.heating_type",
+                    ),
+                ),
+                (
+                    "location_details",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_location_detail",
+                    ),
+                ),
+                (
+                    "object_address",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_address",
+                        verbose_name="Objektadresse",
+                    ),
+                ),
+                (
+                    "object_type",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_type",
+                        verbose_name="Objektart",
+                    ),
+                ),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_%(app_label)s.%(class)s_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "recreational_area_detail",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.recreation_area_types",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="accounts.user"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Request',
+                "verbose_name": "Request",
             },
         ),
         migrations.CreateModel(
-            name='Offer',
+            name="Offer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('last_updated', models.DateTimeField(auto_now=True)),
-                ('title', models.TextField(default='Default Title', verbose_name='Titel')),
-                ('short_description', models.TextField(default='Default Short Description', verbose_name='Kurzbeschreibung')),
-                ('number_adults', models.IntegerField(blank=True, null=True)),
-                ('number_couples', models.IntegerField(blank=True, null=True)),
-                ('number_children', models.IntegerField(blank=True, null=True)),
-                ('pets_number', models.IntegerField(blank=True, null=True)),
-                ('pets_are_allowed', models.BooleanField(blank=True)),
-                ('number_cars', models.IntegerField(blank=True, null=True)),
-                ('number_homeoffice', models.IntegerField(blank=True, null=True)),
-                ('number_kitchens', models.IntegerField(blank=True, null=True)),
-                ('number_bathrooms', models.IntegerField(blank=True, null=True)),
-                ('number_bedrooms', models.IntegerField(blank=True, null=True)),
-                ('living_area', models.IntegerField(blank=True, null=True)),
-                ('is_modern', models.BooleanField(blank=True, default=False)),
-                ('is_built_sustainable', models.BooleanField(blank=True, default=False)),
-                ('is_available_now', models.BooleanField(blank=True, default=False)),
-                ('available_at_date', models.DateField(blank=True, null=True)),
-                ('living_floor', models.IntegerField(blank=True, null=True)),
-                ('monthly_rent_cold', models.DecimalField(blank=True, decimal_places=2, max_digits=9, null=True)),
-                ('monthly_incidentals_price', models.DecimalField(blank=True, decimal_places=2, max_digits=9, null=True)),
-                ('buy_price', models.DecimalField(blank=True, decimal_places=2, max_digits=17, null=True)),
-                ('security_deposit', models.DecimalField(blank=True, decimal_places=2, max_digits=17, null=True)),
-                ('facilities_detail', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.facility_types')),
-                ('finance_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.finance_type', verbose_name='Wohnart')),
-                ('heating_type', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='insertions.heating_type')),
-                ('location_details', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.object_location_detail')),
-                ('object_address', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.object_address', verbose_name='Objektadresse')),
-                ('object_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='insertions.object_type', verbose_name='Objektart')),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_%(app_label)s.%(class)s_set+', to='contenttypes.contenttype')),
-                ('recreational_area_detail', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='insertions.recreation_area_types')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.user')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("last_updated", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.TextField(default="Default Title", verbose_name="Titel"),
+                ),
+                (
+                    "short_description",
+                    models.TextField(
+                        default="Default Short Description",
+                        verbose_name="Kurzbeschreibung",
+                    ),
+                ),
+                ("number_adults", models.IntegerField(blank=True, null=True)),
+                ("number_couples", models.IntegerField(blank=True, null=True)),
+                ("number_children", models.IntegerField(blank=True, null=True)),
+                ("pets_number", models.IntegerField(blank=True, null=True)),
+                ("pets_are_allowed", models.BooleanField(blank=True)),
+                ("number_cars", models.IntegerField(blank=True, null=True)),
+                ("number_homeoffice", models.IntegerField(blank=True, null=True)),
+                ("number_kitchens", models.IntegerField(blank=True, null=True)),
+                ("number_bathrooms", models.IntegerField(blank=True, null=True)),
+                ("number_bedrooms", models.IntegerField(blank=True, null=True)),
+                ("living_area", models.IntegerField(blank=True, null=True)),
+                ("is_modern", models.BooleanField(blank=True, default=False)),
+                (
+                    "is_built_sustainable",
+                    models.BooleanField(blank=True, default=False),
+                ),
+                ("is_available_now", models.BooleanField(blank=True, default=False)),
+                ("available_at_date", models.DateField(blank=True, null=True)),
+                ("living_floor", models.IntegerField(blank=True, null=True)),
+                (
+                    "monthly_rent_cold",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=9, null=True
+                    ),
+                ),
+                (
+                    "monthly_incidentals_price",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=9, null=True
+                    ),
+                ),
+                (
+                    "buy_price",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=17, null=True
+                    ),
+                ),
+                (
+                    "security_deposit",
+                    models.DecimalField(
+                        blank=True, decimal_places=2, max_digits=17, null=True
+                    ),
+                ),
+                (
+                    "facilities_detail",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.facility_types",
+                    ),
+                ),
+                (
+                    "finance_type",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.finance_type",
+                        verbose_name="Wohnart",
+                    ),
+                ),
+                (
+                    "heating_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.heating_type",
+                    ),
+                ),
+                (
+                    "location_details",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_location_detail",
+                    ),
+                ),
+                (
+                    "object_address",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_address",
+                        verbose_name="Objektadresse",
+                    ),
+                ),
+                (
+                    "object_type",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.object_type",
+                        verbose_name="Objektart",
+                    ),
+                ),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_%(app_label)s.%(class)s_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "recreational_area_detail",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="insertions.recreation_area_types",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="accounts.user"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Offer',
+                "verbose_name": "Offer",
             },
         ),
         migrations.CreateModel(
-            name='Object_Image',
+            name="Object_Image",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='')),
-                ('related_offer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='insertions.offer')),
-                ('related_request', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='insertions.request')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                (
+                    "related_offer",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "related_request",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.request",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='object_address',
-            name='state',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='insertions.state'),
+            model_name="object_address",
+            name="state",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="insertions.state"
+            ),
         ),
         migrations.AddField(
-            model_name='county',
-            name='state',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.state'),
+            model_name="county",
+            name="state",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="insertions.state"
+            ),
         ),
         migrations.CreateModel(
-            name='Important_Address',
+            name="Important_Address",
             fields=[
-                ('object_address_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='insertions.object_address')),
-                ('related_offer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='insertions.offer')),
-                ('related_request', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='insertions.request')),
+                (
+                    "object_address_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="insertions.object_address",
+                    ),
+                ),
+                (
+                    "related_offer",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "related_request",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.request",
+                    ),
+                ),
             ],
-            bases=('insertions.object_address',),
+            bases=("insertions.object_address",),
         ),
     ]

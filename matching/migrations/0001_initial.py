@@ -9,42 +9,138 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('insertions', '0001_initial'),
+        ("insertions", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='True_Match',
+            name="True_Match",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('offer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.offer')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.request')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "offer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "request",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.request",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Request_Like',
+            name="Request_Like",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('received_like_from_offer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='receivedLikeFrom', to='insertions.offer')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.request')),
-                ('sent_like_to_offer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sentLikeTo', to='insertions.offer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "received_like_from_offer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="receivedLikeFrom",
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "request",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.request",
+                    ),
+                ),
+                (
+                    "sent_like_to_offer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sentLikeTo",
+                        to="insertions.offer",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Proposed_Match',
+            name="Proposed_Match",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('offer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.offer')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.request')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "offer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "request",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.request",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Offer_Like',
+            name="Offer_Like",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('offer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='insertions.offer')),
-                ('received_like_from_request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='receivedLikeFrom', to='insertions.request')),
-                ('sent_like_to_request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sentLikeTo', to='insertions.request')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "offer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="insertions.offer",
+                    ),
+                ),
+                (
+                    "received_like_from_request",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="receivedLikeFrom",
+                        to="insertions.request",
+                    ),
+                ),
+                (
+                    "sent_like_to_request",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sentLikeTo",
+                        to="insertions.request",
+                    ),
+                ),
             ],
         ),
     ]

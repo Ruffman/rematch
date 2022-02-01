@@ -10,11 +10,12 @@ from . import forms
 # Create your views here.
 class SignUpView(CreateView):
     form_class = forms.UserCreateForm
-    success_url = reverse_lazy('accounts:login')
-    template_name = 'signup.html'
+    success_url = reverse_lazy("accounts:login")
+    template_name = "signup.html"
+
 
 class ProfileView(DetailView, LoginRequiredMixin):
-    template_name = 'accounts_profile.html'
+    template_name = "accounts_profile.html"
     model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+    slug_field = "username"
+    slug_url_kwarg = "username"
