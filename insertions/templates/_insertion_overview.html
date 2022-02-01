@@ -1,0 +1,65 @@
+{% load project_tags %}
+
+<div class="col">
+  <div class="card">
+    <div class="card-header">
+      Basic Details
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">{% field_name object "object_type" %}</th>
+            <td>{{ object.object_type }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "finance_type" %}</th>
+            <td>{{ object.finance_type }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "pets_are_allowed" %}</th>
+            <td>{{ object.pets_are_allowed }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "living_area" %}</th>
+            <td>{{ object.living_area }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "living_floor" %}</th>
+            <td>{{ object.living_floor }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "heating_type" %}</th>
+            <td>{{ object.heating_type }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "is_modern" %}</th>
+            <td>{{ object.is_modern }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "is_built_sustainable" %}</th>
+            <td>{{ object.is_built_sustainable }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "is_available_now" %}</th>
+            <td>{{ object.is_built_sustainable }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object "available_at_date" %}</th>
+            <td>{{ object.is_built_sustainable }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card">
+    <div class="card-header">
+      {% field_name object "short_description" %}
+    </div>
+    <div class="card-body">
+      {{ object.short_description }}
+    </div>
+  </div>
+</div>

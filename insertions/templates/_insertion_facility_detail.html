@@ -1,0 +1,55 @@
+{% load project_tags %}
+
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-header">
+      Facility Detail
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_storeroom" %}</th>
+            <td>{{ facility_detail.has_storeroom }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_carport" %}</th>
+            <td>{{ facility_detail.has_carport }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_fitted_kitchen" %}</th>
+            <td>{{ facility_detail.has_fitted_kitchen }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_elevator" %}</th>
+            <td>{{ facility_detail.has_elevator }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_garage" %}</th>
+            <td>{{ facility_detail.has_garage }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_cellar" %}</th>
+            <td>{{ facility_detail.has_cellar }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "has_parking_area" %}</th>
+            <td>{{ facility_detail.has_parking_area }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "is_furnished" %}</th>
+            <td>{{ facility_detail.is_furnished }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "is_barrier_free" %}</th>
+            <td>{{ facility_detail.is_barrier_free }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name facility_detail "is_partially_furnished" %}</th>
+            <td>{{ facility_detail.is_partially_furnished }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

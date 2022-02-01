@@ -1,0 +1,80 @@
+{% load project_tags %}
+
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-header">
+      Address
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">{% field_name object_address "zip_code" %}</th>
+            <td>{{ object_address.zip_code }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_address "city_name" %}</th>
+            <td>{{ object_address.city_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_address "street_name" %}</th>
+            <td>{{ object_address.street_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_address "street_number" %}</th>
+            <td>{{ object_address.street_number }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-header">
+      Location Detail
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "is_sunny" %}</th>
+            <td>{{ object_location_detail.is_sunny }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "is_calm" %}</th>
+            <td>{{ object_location_detail.is_calm }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "at_hillside" %}</th>
+            <td>{{ object_location_detail.at_hillside }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "near_public_transport" %}</th>
+            <td>{{ object_location_detail.near_public_transport }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "near_freeway" %}</th>
+            <td>{{ object_location_detail.near_freeway }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "near_stores" %}</th>
+            <td>{{ object_location_detail.near_stores }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "near_recreation" %}</th>
+            <td>{{ object_location_detail.near_recreation }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "near_education" %}</th>
+            <td>{{ object_location_detail.near_education }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name object_location_detail "has_nice_view" %}</th>
+            <td>{{ object_location_detail.has_nice_view }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+{% load project_tags %}
+
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-header">
+      Recreation Area Detail
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_balcony" %}</th>
+            <td>{{ recreation_area_detail.has_balcony }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_roof_terrace" %}</th>
+            <td>{{ recreation_area_detail.has_roof_terrace }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_terrace" %}</th>
+            <td>{{ recreation_area_detail.has_terrace }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_garden" %}</th>
+            <td>{{ recreation_area_detail.has_garden }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_winter_garden" %}</th>
+            <td>{{ recreation_area_detail.has_winter_garden }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "has_loggia" %}</th>
+            <td>{{ recreation_area_detail.has_loggia }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% field_name recreation_area_detail "something_different" %}</th>
+            <td>{{ recreation_area_detail.something_different }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
