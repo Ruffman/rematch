@@ -26,24 +26,24 @@ class Finance_Type(models.Model):
         return self.type_name
 
 
-class State(models.Model):
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return self.name
-
-
-class County(models.Model):
-    state = models.ForeignKey(State, on_delete=models.CASCADE)
-    name = models.CharField(max_length=64)
-
-    def __str__(self):
-        return self.state.__str__() + "::" + self.name
+# class State(models.Model):
+#     name = models.CharField(max_length=32)
+#
+#     def __str__(self):
+#         return self.name
+#
+#
+# class County(models.Model):
+#     state = models.ForeignKey(State, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=64)
+#
+#     def __str__(self):
+#         return self.state.__str__() + "::" + self.name
 
 
 class Object_Address(models.Model):
-    state = models.ForeignKey(State, on_delete=models.PROTECT)
-    county = models.ForeignKey(County, on_delete=models.PROTECT)
+    # state = models.ForeignKey(State, on_delete=models.PROTECT)
+    # county = models.ForeignKey(County, on_delete=models.PROTECT)
     zip_code = models.IntegerField(default=00000)
     city_name = models.TextField(default="Default City")
     street_name = models.TextField(default="Default Street Name")
@@ -51,9 +51,10 @@ class Object_Address(models.Model):
 
     def __str__(self):
         return (
-            self.county.__str__()
-            + "::"
-            + str(self.zip_code)
+            # self.county.__str__()
+            # + "::"
+            # +
+            str(self.zip_code)
             + "::"
             + self.city_name
             + "::"
@@ -64,27 +65,27 @@ class Object_Address(models.Model):
 
 
 class Object_Location_Detail(models.Model):
-    is_sunny = models.BooleanField(default=False, blank=True)
-    is_calm = models.BooleanField(default=False, blank=True)
-    at_hillside = models.BooleanField(default=False, blank=True)
-    near_public_transport = models.BooleanField(default=False, blank=True)
-    near_freeway = models.BooleanField(default=False, blank=True)
-    near_stores = models.BooleanField(default=False, blank=True)
-    near_recreation = models.BooleanField(default=False, blank=True)
-    near_education = models.BooleanField(default=False, blank=True)
-    has_nice_view = models.BooleanField(default=False, blank=True)
+    is_sunny = models.BooleanField(default=False)
+    is_calm = models.BooleanField(default=False)
+    at_hillside = models.BooleanField(default=False)
+    near_public_transport = models.BooleanField(default=False)
+    near_freeway = models.BooleanField(default=False)
+    near_stores = models.BooleanField(default=False)
+    near_recreation = models.BooleanField(default=False)
+    near_education = models.BooleanField(default=False)
+    has_nice_view = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return self.name
 
 
 class Recreation_Area_Types(models.Model):
-    has_balcony = models.BooleanField(default=False, blank=True)
-    has_roof_terrace = models.BooleanField(default=False, blank=True)
-    has_terrace = models.BooleanField(default=False, blank=True)
-    has_garden = models.BooleanField(default=False, blank=True)
-    has_winter_garden = models.BooleanField(default=False, blank=True)
-    has_loggia = models.BooleanField(default=False, blank=True)
+    has_balcony = models.BooleanField(default=False)
+    has_roof_terrace = models.BooleanField(default=False)
+    has_terrace = models.BooleanField(default=False)
+    has_garden = models.BooleanField(default=False)
+    has_winter_garden = models.BooleanField(default=False)
+    has_loggia = models.BooleanField(default=False)
     something_different = models.TextField(blank=True)
 
     # def __str__(self):
@@ -92,16 +93,16 @@ class Recreation_Area_Types(models.Model):
 
 
 class Facility_Types(models.Model):
-    has_storeroom = models.BooleanField(default=False, blank=True)
-    has_carport = models.BooleanField(default=False, blank=True)
-    has_fitted_kitchen = models.BooleanField(default=False, blank=True)
-    has_elevator = models.BooleanField(default=False, blank=True)
-    has_garage = models.BooleanField(default=False, blank=True)
-    has_cellar = models.BooleanField(default=False, blank=True)
-    has_parking_area = models.BooleanField(default=False, blank=True)
-    is_furnished = models.BooleanField(default=False, blank=True)
-    is_barrier_free = models.BooleanField(default=False, blank=True)
-    is_partially_furnished = models.BooleanField(default=False, blank=True)
+    has_storeroom = models.BooleanField(default=False)
+    has_carport = models.BooleanField(default=False)
+    has_fitted_kitchen = models.BooleanField(default=False)
+    has_elevator = models.BooleanField(default=False)
+    has_garage = models.BooleanField(default=False)
+    has_cellar = models.BooleanField(default=False)
+    has_parking_area = models.BooleanField(default=False)
+    is_furnished = models.BooleanField(default=False)
+    is_barrier_free = models.BooleanField(default=False)
+    is_partially_furnished = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return self.name
@@ -153,7 +154,7 @@ class Object(PolymorphicModel):
     number_children = models.IntegerField(null=True, blank=True)
 
     pets_number = models.IntegerField(null=True, blank=True)
-    pets_are_allowed = models.BooleanField(blank=True)
+    pets_are_allowed = models.BooleanField(default=False)
 
     number_cars = models.IntegerField(null=True, blank=True)
 
@@ -183,11 +184,11 @@ class Object(PolymorphicModel):
     heating_type = models.ForeignKey(Heating_Type, on_delete=models.PROTECT)
 
     # object building properties
-    is_modern = models.BooleanField(default=False, blank=True)
-    is_built_sustainable = models.BooleanField(default=False, blank=True)
+    is_modern = models.BooleanField(default=False)
+    is_built_sustainable = models.BooleanField(default=False)
 
     # availability
-    is_available_now = models.BooleanField(default=False, blank=True)
+    is_available_now = models.BooleanField(default=False)
     available_at_date = models.DateField(null=True, blank=True)
 
     # if object is Apartment or Room
