@@ -1,6 +1,9 @@
 from itertools import chain
 
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+)
 from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -28,7 +31,9 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                 self.proposed_match_queryset = Request.objects.filter(
                     id__in=self.request_id_queryset
                 )
-                self.like_queryset = Offer_Like.objects.filter(offer_id=self.id)
+                self.like_queryset = Offer_Like.objects.filter(
+                    offer_id=self.id
+                )
             elif self.kwargs["type"] == Request.__name__:
                 self.object_queryset = Request.objects.get(id=self.id)
                 self.offer_id_queryset = Proposed_Match.objects.filter(
@@ -37,14 +42,18 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                 self.proposed_match_queryset = Offer.objects.filter(
                     id__in=self.offer_id_queryset
                 )
-                self.like_queryset = Request_Like.objects.filter(request_id=self.id)
+                self.like_queryset = Request_Like.objects.filter(
+                    request_id=self.id
+                )
             else:
                 raise Http404
         except:
             raise Http404
         else:
             return chain(
-                self.object_queryset, self.proposed_match_queryset, self.like_queryset
+                self.object_queryset,
+                self.proposed_match_queryset,
+                self.like_queryset,
             )
 
     def get_context_data(self, **kwargs):
@@ -96,7 +105,9 @@ class InsertionOverView(LoginRequiredMixin, generic.ListView):
         try:
             current_user_id = self.request.user.id
             self.offer_queryset = Offer.objects.filter(user_id=current_user_id)
-            self.request_queryset = Request.objects.filter(user_id=current_user_id)
+            self.request_queryset = Request.objects.filter(
+                user_id=current_user_id
+            )
         except:
             raise Http404
         else:

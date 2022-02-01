@@ -175,7 +175,9 @@ class Object(PolymorphicModel):
     )
 
     # facilities
-    facilities_detail = models.OneToOneField(Facility_Types, on_delete=models.PROTECT)
+    facilities_detail = models.OneToOneField(
+        Facility_Types, on_delete=models.PROTECT
+    )
 
     # heating type
     heating_type = models.ForeignKey(Heating_Type, on_delete=models.PROTECT)
@@ -248,8 +250,12 @@ class Request(Object):
 
 
 class Object_Image(models.Model):
-    related_offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
-    related_request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
+    related_offer = models.ForeignKey(
+        Offer, on_delete=models.CASCADE, null=True
+    )
+    related_request = models.ForeignKey(
+        Request, on_delete=models.CASCADE, null=True
+    )
 
     image = models.ImageField()
 
