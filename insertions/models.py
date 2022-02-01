@@ -162,8 +162,8 @@ class Request(Object):
 
 
 class Object_Address(models.Model):
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
-    request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE, null=True)
+    request = models.OneToOneField(Request, on_delete=models.CASCADE, null=True)
     # state = models.ForeignKey(State, on_delete=models.PROTECT)
     # county = models.ForeignKey(County, on_delete=models.PROTECT)
     zip_code = models.IntegerField(default=00000)
