@@ -10,6 +10,9 @@
   <form method="POST" id="insertForm">
     {% csrf_token %}
     {% bootstrap_form form %}
+    {% for formset in inlines  %}
+      {{ formset }}
+    {% endfor %}
     {% bootstrap_button content='Insert' button_type='submit' %}
   </form>
 {% endblock %}

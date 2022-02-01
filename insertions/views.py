@@ -10,7 +10,20 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
 
-from insertions.models import Object, Offer, Request
+from extra_views import (
+    CreateWithInlinesView,
+    UpdateWithInlinesView,
+    InlineFormSetFactory,
+)
+
+from insertions.models import (
+    Offer,
+    Request,
+    Object_Address,
+    Object_Location_Detail,
+    Recreation_Area_Detail,
+    Facility_Detail,
+)
 from matching.models import Offer_Like, Proposed_Match, Request_Like
 
 # Create your views here.
@@ -65,10 +78,92 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
         return context
 
 
-class NewOfferView(LoginRequiredMixin, generic.edit.CreateView):
-    template_name = "insert.html"
-    fields = ("object_type", "living_area")
+class ObjectAddressInline(InlineFormSetFactory):
+    model = Object_Address
+    fields = ("zip_code", "city_name", "street_name", "street_number")
+
+
+class ObjectLocationDetailInline(InlineFormSetFactory):
+    model = Object_Location_Detail
+    fields = (
+        "is_sunny",
+        "is_calm",
+        "at_hillside",
+        "near_public_transport",
+        "near_freeway",
+        "near_stores",
+        "near_recreation",
+        "near_education",
+        "has_nice_view",
+    )
+
+
+class RecreationAreaTypeInline(InlineFormSetFactory):
+    model = Recreation_Area_Detail
+    fields = (
+        "has_balcony",
+        "has_roof_terrace",
+        "has_terrace",
+        "has_garden",
+        "has_winter_garden",
+        "has_loggia",
+        "something_different",
+    )
+
+
+class FacilityTypesInline(InlineFormSetFactory):
+    model = Facility_Detail
+    fields = (
+        "has_storeroom",
+        "has_carport",
+        "has_fitted_kitchen",
+        "has_elevator",
+        "has_garage",
+        "has_cellar",
+        "has_parking_area",
+        "is_furnished",
+        "is_barrier_free",
+        "is_partially_furnished",
+    )
+
+
+class NewOfferView(LoginRequiredMixin, CreateWithInlinesView):
     model = Offer
+    inlines = (
+        ObjectLocationDetailInline,
+        RecreationAreaTypeInline,
+        ObjectAddressInline,
+        FacilityTypesInline,
+
+    )
+    fields = (
+        "object_type",
+        "finance_type",
+        "heating_type",
+        "title",
+        "short_description",
+        "number_adults",
+        "number_couples",
+        "number_children",
+        "pets_number",
+        "pets_are_allowed",
+        "number_cars",
+        "number_homeoffice",
+        "number_kitchens",
+        "number_bathrooms",
+        "number_bedrooms",
+        "living_area",
+        "living_floor",
+        "is_modern",
+        "is_built_sustainable",
+        "is_available_now",
+        "available_at_date",
+        "monthly_rent_cold",
+        "monthly_incidentals_price",
+        "buy_price",
+        "security_deposit",
+    )
+    template_name = "insert.html"
     success_url = reverse_lazy("insertions:ins_overview")
 
     def form_valid(self, form):
@@ -78,7 +173,7 @@ class NewOfferView(LoginRequiredMixin, generic.edit.CreateView):
 
 
 class NewRequestView(LoginRequiredMixin, generic.edit.CreateView):
-    template_name = "insert.html"
+    model = Request
     fields = (
         "object_type",
         "zip_code",
@@ -89,7 +184,7 @@ class NewRequestView(LoginRequiredMixin, generic.edit.CreateView):
         "monthly_rent_price",
         "buy_price",
     )
-    model = Request
+    template_name = "insert.html"
     success_url = reverse_lazy("insertions:ins_overview")
 
     def form_valid(self, form):

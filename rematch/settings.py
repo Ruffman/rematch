@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_bootstrap5",
     "django_extensions",
+    "extra_views",
     "accounts.apps.AccountsConfig",
     "conversations.apps.ConversationsConfig",
     "insertions.apps.InsertionsConfig",
