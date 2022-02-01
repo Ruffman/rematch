@@ -163,7 +163,9 @@ class Request(Object):
 
 class Object_Address(models.Model):
     offer = models.OneToOneField(Offer, on_delete=models.CASCADE, null=True)
-    request = models.OneToOneField(Request, on_delete=models.CASCADE, null=True)
+    request = models.OneToOneField(
+        Request, on_delete=models.CASCADE, null=True
+    )
     # state = models.ForeignKey(State, on_delete=models.PROTECT)
     # county = models.ForeignKey(County, on_delete=models.PROTECT)
     zip_code = models.IntegerField(default=00000)
@@ -171,6 +173,9 @@ class Object_Address(models.Model):
     street_name = models.TextField(default="Default Street Name")
     street_number = models.IntegerField(default=000)
     is_important = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "object_address"
 
     def __str__(self):
         return (
