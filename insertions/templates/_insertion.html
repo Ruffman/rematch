@@ -1,14 +1,83 @@
-<div class="accordion" id="accordionObjectDetails">
+{% load project_tags %}
+
+<div class="accordion" id="accordionObjectBase">
   <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#objectDetails" aria-expanded="true" aria-controls="collapseOne">
-          {{ object.title }} Details
-        </button>
-      </h2>
-      <div id="objectDetails" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-        <div class="accordion-body">
-          <p>Here the insertions data will be</p>
+    <h2 class="accordion-header" id="headingBase">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#objectBase" aria-expanded="false" aria-controls="objectBase">
+        {{ object.title }} | OverView
+      </button>
+    </h2>
+    <div id="objectBase" class="accordion-collapse collapse" aria-labelledby="headingBase">
+      <div class="accordion-body">
+        <div class="accordion" id="accordionObjectDetails">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingObjectDetails">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#objectDetails" aria-expanded="false" aria-controls="objectDetails">
+                Überblick | Beschreibung
+              </button>
+            </h2>
+            <div id="objectDetails" class="accordion-collapse collapse" aria-labelledby="headingObjectDetails">
+              <div class="accordion-body">
+                <div class="container">
+                  <div class="row row-cols-1 p-3">
+                    {% include "_insertion_image_gallery.html" %}
+                  </div>
+                  <div class="row row-cols-1 row-cols-xl-2 py-3">
+                    {% include "_insertion_overview.html" %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingLocationDetails">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#locationDetails" aria-expanded="false" aria-controls="locationDetails">
+                Lage | Location-Details + Address
+              </button>
+            </h2>
+            <div id="locationDetails" class="accordion-collapse collapse" aria-labelledby="headingLocationDetails">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-xl-2">
+                  {% include "_insertion_location_detail.html" %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingRecreationDetails">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recreationDetails" aria-expanded="false" aria-controls="recreationDetails">
+                Details | Recreation-Details
+              </button>
+            </h2>
+            <div id="recreationDetails" class="accordion-collapse collapse" aria-labelledby="headingRecreationDetails">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-xl-2">
+                  {% include "_insertion_recreation_area_detail.html" %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFacilityDetails">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#facilityDetails" aria-expanded="false" aria-controls="facilityDetails">
+                Details | Facility-Details
+              </button>
+            </h2>
+            <div id="facilityDetails" class="accordion-collapse collapse" aria-labelledby="headingFacilityDetails">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-xl-2">
+                  {% include "_insertion_facility_detail.html" %}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
+  </div>
 </div>

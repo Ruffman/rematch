@@ -2,22 +2,22 @@
 
 {% block content %}
 <h1>Insertion Detail for id: {{ object.id }} type: {{ object.object_type }}</h1>
-<div class="row p-2">
+<div class="row py-2">
   {% block insertion_information %}
     {% include "_insertion.html" %}
   {% endblock %}
 </div>
-<div class="row p-2">
+<div class="row py-2">
   {% block recommended_matches %}
     {% include "matching_recommended_matches.html" %}
   {% endblock %}
 </div>
-<div class="row p-2">
+<div class="row py-2">
   {% block sent_likes %}
     {% include "matching_sent_likes.html" %}
   {% endblock %}
 </div>
-<div class="row p-2">
+<div class="row py-2">
   {% block received_likes %}
     {% include "matching_received_likes.html" %}
   {% endblock %}
