@@ -175,15 +175,14 @@ class FacilityTypesInline(InlineFormSetFactory):
     )
 
 
-class NewOfferView(LoginRequiredMixin, CreateWithInlinesView):
-    model = Offer
+class NewInsertionView(LoginRequiredMixin, CreateWithInlinesView):
     inlines = (
         ObjectLocationDetailInline,
         RecreationAreaTypeInline,
         ObjectAddressInline,
         FacilityTypesInline,
     )
-    fields = (
+    base_fields = (
         "object_type",
         "finance_type",
         "heating_type",
@@ -205,39 +204,38 @@ class NewOfferView(LoginRequiredMixin, CreateWithInlinesView):
         "is_built_sustainable",
         "is_available_now",
         "available_at_date",
+    )
+    template_name = "insert.html"
+    success_url = reverse_lazy("insertions:ins_overview")
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        return super().form_valid(form)
+
+
+class NewOfferView(NewInsertionView):
+    model = Offer
+    model_fields = (
         "monthly_rent_cold",
         "monthly_incidentals_price",
         "buy_price",
         "security_deposit",
     )
-    template_name = "insert.html"
-    success_url = reverse_lazy("insertions:ins_overview")
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        return super().form_valid(form)
+    def __init__(self):
+        self.fields = self.base_fields + self.model_fields
 
 
-class NewRequestView(LoginRequiredMixin, generic.edit.CreateView):
+class NewRequestView(NewInsertionView):
     model = Request
-    fields = (
-        "object_type",
-        "zip_code",
-        "city_name",
-        "street_name",
-        "street_number",
-        "living_area",
-        "monthly_rent_price",
-        "buy_price",
+    model_fields = (
+        "monthly_income",
+        "available_cash",
     )
-    template_name = "insert.html"
-    success_url = reverse_lazy("insertions:ins_overview")
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        return super().form_valid(form)
+    def __init__(self):
+        self.fields = self.base_fields + self.model_fields
 
 
 class InsertionOverView(LoginRequiredMixin, generic.ListView):
