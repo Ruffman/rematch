@@ -1,1 +1,13 @@
-<h1>Userprofile private data</h1>
+{% load project_tags %}
+
+<div>
+  <p class="col-md-12 fs-4">An dieser stelle werden private Angaben zum Profil angezeigt</p>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>{% field_name user "birth_date" %}</th>
+        <td>{{ user.birth_date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

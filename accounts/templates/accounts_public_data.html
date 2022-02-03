@@ -1,13 +1,33 @@
-<div class="container">
-  <div class="col-2 col-sm-1">
-    <div class="col">
+{% load project_tags %}
+
+<div>
+  <p class="col-md-12 fs-4">An dieser stelle werden öffentliche Angaben zum Profil angezeigt</p>
+  <table class="table">
+    <tbody>
       <tr>
-        <p>adf{{ object.username }}</p>
+        <th>{% field_name user "title" %}</th>
+        <td>{{ user.title }}</td>
       </tr>
-
-    </div>
-    <div class="col">
-
-    </div>
-  </div>
+      <tr>
+        <th>{% field_name user "academic_title" %}</th>
+        <td>{{ user.academic_title }}</td>
+      </tr>
+      <tr>
+        <th>{% field_name user "voaction" %}</th>
+        <td>{{ user.voaction }}</td>
+      </tr>
+      <tr>
+        <th>{% field_name user "bio" %}</th>
+        <td>{{ user.bio }}</td>
+      </tr>
+      <tr>
+        <th>{% field_name user "city_name" %}</th>
+        <td>{{ user.city_name }}</td>
+      </tr>
+      <tr>
+        <th>{% field_name user "zip_code" %}</th>
+        <td>{{ user.zip_code }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
