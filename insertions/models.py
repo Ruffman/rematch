@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
-from polymorphic.models import PolymorphicModel
+# from polymorphic.models import PolymorphicModel
 
 User = get_user_model()
 
@@ -33,7 +33,7 @@ class Heating_Type(models.Model):
         return self.type_name
 
 
-class Object(PolymorphicModel):
+class Object(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     object_type = models.ForeignKey(
