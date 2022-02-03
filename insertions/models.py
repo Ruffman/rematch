@@ -99,8 +99,6 @@ class Object(PolymorphicModel):
             + "::"
             + self.finance_type.__str__()
             + "::"
-            + self.object_address.__str__()
-            + "::"
             + self.title
             + "::"
             + self.user.__str__()
