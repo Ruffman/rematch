@@ -7,16 +7,15 @@ class MatchingConfig(AppConfig):
     name = "matching"
 
     def ready(self):
-        super().ready()
 
         from . import signals
 
         # TODO: prevent multiple signals
         post_save.connect(
-            signals.look_for_matches_for_offer, dispatch_uid="offer_matches"
+            signals.look_for_matches, dispatch_uid="matches"
         )
 
-        post_save.connect(
-            signals.look_for_matches_for_request,
-            dispatch_uid="request_matches",
-        )
+        # post_save.connect(
+        #     signals.look_for_matches_for_request,
+        #     dispatch_uid="request_matches",
+        # )

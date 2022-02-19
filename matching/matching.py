@@ -2,11 +2,19 @@
 from insertions.models import Offer, Request
 
 
-def lookup_matches_for_offer():
-    query = Request.objects.all()
-    print(query)
+
+def lookup_matching_offers(request):
+    print("lookup matching offer")
 
 
-def lookup_matches_for_request():
-    query = Offer.objects.all()
-    print(query)
+
+def lookup_matching_requests(offer):
+    print("lookup matching requests")
+
+
+def lookup_matches(instance):
+    if instance.__class__ == Request:
+        lookup_matching_offers(instance)
+
+    elif instance.__class__ == Offer:
+        lookup_matching_requests(instance)
