@@ -6,5 +6,5 @@ from insertions.models import Object
 
 
 @receiver(post_save, sender=Object)
-def look_for_matches(sender, **kwargs):
-    matching.lookup_matches(sender)
+def look_for_matches(sender, instance, **kwargs):
+    matching.lookup_matches(instance)
