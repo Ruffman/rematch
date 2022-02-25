@@ -39,7 +39,7 @@ class User(AbstractUser):
         null=True,
         blank=True,
     )
-    voaction = models.ForeignKey(
+    vocation = models.ForeignKey(
         Vocation_Type,
         verbose_name="Berufsgruppe",
         on_delete=models.PROTECT,
