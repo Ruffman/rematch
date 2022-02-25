@@ -17,6 +17,8 @@ from insertions.models import (
     Facility_Detail,
 )
 
+from accounts.models import User
+
 
 # Create your views here.
 class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
@@ -90,8 +92,11 @@ class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
         except:
             raise Http404
         else:
+            self.object_user_query = User.objects.get(id=self.object_query.user_id)
+
             return chain(
                 self.object_query,
+                self.object_user_query,
                 self.object_address_queryset,
                 self.object_location_detail_query,
                 self.object_recreation_area_detail_query,
@@ -103,6 +108,7 @@ class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["object"] = self.object_query
+        context["user"] = self.object_user_query
         context["object_address"] = self.object_address_queryset
         context["object_location_detail"] = self.object_location_detail_query
         context[
