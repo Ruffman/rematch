@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<div class="container">
+  <h1>Update my user profile</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button content='Speichern' button_type='submit' %}
+  </form>
+</div>
+{% endblock %}

@@ -17,4 +17,9 @@ urlpatterns = [
         views.ProfileView.as_view(),
         name="acc_profile",
     ),
+    path(
+        "<slug:username>/profile/update",
+        views.UpdateProfileDataView.as_view(template_name="user_update.html"),
+        name="acc_profile_update",
+    ),
 ]
