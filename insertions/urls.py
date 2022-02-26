@@ -8,7 +8,7 @@ urlpatterns = [
     path("new_request/", views.NewRequestView.as_view(), name="new_request"),
     path("overview/", views.InsertionOverView.as_view(), name="ins_overview"),
     path(
-        "<str:type>/<int:id>/detail/",
+        "<str:object_type>/<int:object_id>/detail/",
         views.InsertionDetailView.as_view(),
         name="detail",
     ),

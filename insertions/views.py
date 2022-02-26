@@ -34,8 +34,9 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         try:  # TODO: optimize so match_queryset is a subset of insertion objects and likes are no unnecessary querys
-            self.id = self.kwargs["id"]
-            if self.kwargs["type"] == Offer.__name__:
+            self.id = self.kwargs["object_id"]
+            self.type = self.kwargs["object_type"]
+            if self.type == Offer.__name__:
                 self.object_query = Offer.objects.get(id=self.id)
 
                 # TODO: split important addresses into extra set. there needs to be eval to guarantee only one normal address exists for an object
@@ -69,7 +70,7 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                 self.like_queryset = Offer_Like.objects.filter(
                     offer_id=self.id
                 )
-            elif self.kwargs["type"] == Request.__name__:
+            elif self.type == Request.__name__:
                 self.object_query = Request.objects.get(id=self.id)
 
                 # TODO: split important addresses into extra set. there needs to be eval to guarantee only one normal address exists for an object
