@@ -10,5 +10,5 @@
     <h1>Match insertion data</h1>
     {% include "_insertion.html" %}
   {% endblock %}
-  <a class="btn btn-primary" href="{% url 'insertions:detail' object_type=view.kwargs.object_type object_id=view.kwargs.object_id %}" role="button">Send Like</a>
+  <a class="btn btn-primary" href="{% url 'insertions:detail' object_type=view.return_object_type object_id=view.return_object_id %}" role="button">Send Like</a>
 {% endblock %}

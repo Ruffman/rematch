@@ -20,14 +20,29 @@ from insertions.models import (
 from accounts.models import User
 from .models import Proposed_Match
 
-# Create your views here.
+# This view is called to look at the details of a matching opposite object
+# If called by an OfferDetailView it display a matching request and vice versa
 class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
     template_name = "matching_recommended_detail.html"
+
+    # used to go back to the object that has led to the display of this view
+    return_object_id = 0
+    return_object_type = ""
+
+    def set_return_values(self):
+        prop_match = Proposed_Match.objects.get(pk=self.kwargs["prop_match_id"])
+        if self.type == Offer.__name__:
+            self.return_object_type = Request.__name__
+            self.return_object_id = prop_match.request_id
+        elif self.type == Request.__name__:
+            self.return_object_type = Offer.__name__
+            self.return_object_id = prop_match.offer.id
 
     def get_queryset(self, **kwargs):
         try:  # TODO: optimize so match_queryset is a subset of insertion objects and likes are no unnecessary querys
             self.id = self.kwargs["object_id"]
             self.type = self.kwargs["object_type"]
+
             if self.type == Offer.__name__:
                 self.object_query = Offer.objects.get(id=self.id)
 
@@ -87,6 +102,7 @@ class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
             raise Http404
         else:
             self.object_user_query = User.objects.get(id=self.object_query.user_id)
+            self.set_return_values()
 
             return chain(
                 self.object_query,
