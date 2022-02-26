@@ -18,7 +18,7 @@ from insertions.models import (
 )
 
 from accounts.models import User
-
+from .models import Proposed_Match
 
 # Create your views here.
 class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
@@ -26,8 +26,8 @@ class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         try:  # TODO: optimize so match_queryset is a subset of insertion objects and likes are no unnecessary querys
-            self.id = self.kwargs["id"]
-            if self.kwargs["type"] == Offer.__name__:
+            self.id = self.kwargs["object_id"]
+            if self.kwargs["object_type"] == Offer.__name__:
                 self.object_query = Offer.objects.get(id=self.id)
 
                 # TODO: split important addresses into extra set. there needs to be eval to guarantee only one normal address exists for an object
@@ -47,17 +47,10 @@ class RecommendedMatchDetailView(LoginRequiredMixin, generic.ListView):
                     Facility_Detail.objects.get(offer_id=self.id)
                 )
 
-                # request_id_queryset = Proposed_Match.objects.filter(
-                #     offer_id=self.id
-                # ).values("request_id")
-                # self.proposed_match_queryset = Request.objects.filter(
-                #     id__in=request_id_queryset
-                # )
-                #
                 # self.like_queryset = Offer_Like.objects.filter(
                 #     offer_id=self.id
                 # )
-            elif self.kwargs["type"] == Request.__name__:
+            elif self.kwargs["object_type"] == Request.__name__:
                 self.object_query = Request.objects.get(id=self.id)
 
                 # TODO: split important addresses into extra set. there needs to be eval to guarantee only one normal address exists for an object
