@@ -55,12 +55,16 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                     Facility_Detail.objects.get(offer_id=self.id)
                 )
 
-                request_id_queryset = Proposed_Match.objects.filter(
-                    offer_id=self.id
-                ).values("request_id")
-                self.proposed_match_queryset = Request.objects.filter(
-                    id__in=request_id_queryset
+                self.proposed_match_queryset = Proposed_Match.objects.filter(offer_id=self.id)
+                request_id_list = self.proposed_match_queryset.values("request_id")
+                self.proposed_match_object_queryset = Request.objects.filter(
+                    id__in=request_id_list
                 )
+                self.match_context_data = {}
+                for proposed_match in self.proposed_match_queryset:
+                    id = proposed_match.id
+                    object = self.proposed_match_object_queryset.get(id=proposed_match.request_id)
+                    self.match_context_data[id] = object
 
                 self.like_queryset = Offer_Like.objects.filter(
                     offer_id=self.id
@@ -85,12 +89,18 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                     Facility_Detail.objects.get(request_id=self.id)
                 )
 
-                offer_id_queryset = Proposed_Match.objects.filter(
+                self.proposed_match_queryset = Proposed_Match.objects.filter(request_id=self.id)
+                offer_id_list = Proposed_Match.objects.filter(
                     request_id=self.id
                 ).values("offer_id")
-                self.proposed_match_queryset = Offer.objects.filter(
-                    id__in=offer_id_queryset
+                self.proposed_match_object_queryset = Offer.objects.filter(
+                    id__in=offer_id_list
                 )
+                self.match_context_data = {}
+                for proposed_match in self.proposed_match_queryset:
+                    id = proposed_match.id
+                    object = self.proposed_match_object_queryset.get(id=proposed_match.offer_id)
+                    self.match_context_data[id] = object
 
                 self.like_queryset = Request_Like.objects.filter(
                     request_id=self.id
@@ -100,6 +110,10 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
         except:
             raise Http404
         else:
+            # TODO: what exactly is required to return here. All those querysets
+            # are different, so chaining them seems useless / error prone
+            # is it required to genereate context data with default behaviour?
+            # if so, I create context data myself, then would be useless
             return chain(
                 self.object_query,
                 self.object_address_queryset,
@@ -107,6 +121,7 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                 self.object_recreation_area_detail_query,
                 self.object_facility_detail_query,
                 self.proposed_match_queryset,
+                self.proposed_match_object_queryset,
                 self.like_queryset,
             )
 
@@ -119,7 +134,7 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
             "recreation_area_detail"
         ] = self.object_recreation_area_detail_query
         context["facility_detail"] = self.object_facility_detail_query
-        context["proposed_match_list"] = self.proposed_match_queryset
+        context["proposed_matches"] = self.match_context_data
         context["like_list"] = self.like_queryset
 
         return context
