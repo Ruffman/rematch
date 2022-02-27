@@ -16,11 +16,11 @@
             </tr>
           </thead>
           <tbody>
-            {% for sent_like in like_list %}
+            {% for match_id, match_object in received_likes.items %}
             <tr>
-              <th>1</th>
-              <td>{{ match.id }}</td>
-              <td>{{ match.object_type }}</td>
+              <th>{{ match_id }}</th>
+              <td>{{ match_object.id }}</td>
+              <td>{{ match_object.object_type }}</td>
             </tr>
             {% endfor %}
           </tbody>
