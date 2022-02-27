@@ -23,7 +23,7 @@ from insertions.models import (
     Recreation_Area_Detail,
     Facility_Detail,
 )
-from matching.models import Offer_Like, Proposed_Match, Request_Like
+from matching.models import Proposed_Match
 
 # Create your views here.
 
@@ -67,9 +67,9 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                     object = self.proposed_match_object_queryset.get(id=proposed_match.request_id)
                     self.match_context_data[id] = object
 
-                self.like_queryset = Offer_Like.objects.filter(
-                    offer_id=self.id
-                )
+                # self.like_queryset = Offer_Like.objects.filter(
+                #     offer_id=self.id
+                # )
             elif self.type == Request.__name__:
                 self.object_query = Request.objects.get(id=self.id)
 
@@ -103,9 +103,9 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                     object = self.proposed_match_object_queryset.get(id=proposed_match.offer_id)
                     self.match_context_data[id] = object
 
-                self.like_queryset = Request_Like.objects.filter(
-                    request_id=self.id
-                )
+                # self.like_queryset = Request_Like.objects.filter(
+                #     request_id=self.id
+                # )
             else:
                 raise Http404
         except:
@@ -123,7 +123,7 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
                 self.object_facility_detail_query,
                 self.proposed_match_queryset,
                 self.proposed_match_object_queryset,
-                self.like_queryset,
+                # self.like_queryset,
             )
 
     def get_context_data(self, **kwargs):
@@ -136,7 +136,7 @@ class InsertionDetailView(LoginRequiredMixin, generic.ListView):
         ] = self.object_recreation_area_detail_query
         context["facility_detail"] = self.object_facility_detail_query
         context["proposed_matches"] = self.match_context_data
-        context["like_list"] = self.like_queryset
+        # context["like_list"] = self.like_queryset
 
         return context
 
