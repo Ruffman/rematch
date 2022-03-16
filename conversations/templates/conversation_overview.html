@@ -1,11 +1,19 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 <div class="insertions-page">
   <h1>My conversations</h1>
   <div class="container">
     <!-- CONVERSATIONS LIST -->
+    {% for offer in offer_list %}
+      {# accordion #}
+      {#  #}
+    {% endfor %}
 
+    {% for request in request_list  %}
+
+    {% endfor %}
     <!-- END CONVERSATIONS LIST -->
   </div>
 </div>

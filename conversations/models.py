@@ -19,3 +19,5 @@ class ChatLine(models.Model):
     content_image = models.ImageField(
         upload_to=None, height_field=None, width_field=None
     )
+
+class Conversation(models.Model):
